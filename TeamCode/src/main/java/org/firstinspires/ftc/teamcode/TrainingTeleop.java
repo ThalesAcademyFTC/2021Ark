@@ -9,25 +9,19 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  * Clasp is a basic, bare-bones teleop designed to run on top of Anvil.
  */
 
-@TeleOp(name="TestTeleop", group="Pushbot")
+@TeleOp(name="TrainingTeleop", group="Pushbot")
 //@Disabled
-public class TestTeleop extends OpMode {
+public class TrainingTeleop extends OpMode {
 
     private Anvil robot;
 
     @Override
     public void init() {
-        robot = new Anvil(hardwareMap, Anvil.Drivetrain.MECHANUM, telemetry);
+        //robot = new Anvil(hardwareMap, Anvil.Drivetrain.MECHANUM, telemetry);
     }
 
     @Override
-
     public void loop() {
-        if (gamepad1.atRest()) robot.rest();
-        else {
-            if (Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)) {
-                robot.turnRight(gamepad1.left_stick_x);
-            } else robot.moveBackward(gamepad1.left_stick_y);
-        }
+
     }
 }

@@ -45,7 +45,6 @@ public class Anvil {
         HOLONOMIC,
         TANK,
         WEST_COAST,
-        MECHANUM,
         OMNIDRIVE,
         EVAN,
         SAM,
@@ -180,23 +179,6 @@ public class Anvil {
                 special = new DcMotor[]{motor2, motor3};
                 unique = new DcMotor[]{motor1, motor4};
                 collect = new DcMotor[]{cmotor1, cmotor2};
-                hs = false;
-                break;
-            case MECHANUM:
-                //Map all motors to proper variables.
-                motor1 = hwMap.dcMotor.get("motor1");
-                motor2 = hwMap.dcMotor.get("motor2");
-                motor3 = hwMap.dcMotor.get("motor3");
-                motor4 = hwMap.dcMotor.get("motor4");
-                motor1.setDirection(DcMotor.Direction.REVERSE);
-                motor2.setDirection(DcMotor.Direction.FORWARD);
-                motor3.setDirection(DcMotor.Direction.REVERSE);
-                motor4.setDirection(DcMotor.Direction.FORWARD);
-                forward = new DcMotor[]{motor1, motor2, motor3, motor4};
-                left = new DcMotor[]{motor3, motor2};
-                right = new DcMotor[]{motor1, motor4};
-                special = new DcMotor[]{motor2, motor4};
-                unique = new DcMotor[]{motor1, motor3};
                 hs = false;
                 break;
             case SAM:
