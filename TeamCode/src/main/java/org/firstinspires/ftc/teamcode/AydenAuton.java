@@ -35,9 +35,10 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.EVAN;
+import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.MECHANUM;
 
 
-@Autonomous(name="Auton", group="Pushbot")
+@Autonomous(name="AydenAuton", group="Pushbot")
 @Disabled
 
 public class AydenAuton extends LinearOpMode {
@@ -45,7 +46,7 @@ public class AydenAuton extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
     @Override
     public void runOpMode() {
-        robot = new Anvil(hardwareMap, EVAN, telemetry);
+        robot = new Anvil(hardwareMap, MECHANUM, telemetry);
         telemetry.addData("Status", "Initialized");
         runtime.reset();
         telemetry.update();

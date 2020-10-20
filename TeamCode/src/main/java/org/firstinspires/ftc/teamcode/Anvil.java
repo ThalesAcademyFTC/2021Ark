@@ -85,13 +85,13 @@ public class Anvil {
                 motor2 = hwMap.dcMotor.get("motor2");
                 motor3 = hwMap.dcMotor.get("motor3");
                 motor4 = hwMap.dcMotor.get("motor4");
-                motor1.setDirection(DcMotorSimple.Direction.FORWARD);
-                motor2.setDirection(DcMotorSimple.Direction.FORWARD);
-                motor1.setDirection(DcMotorSimple.Direction.FORWARD);
-                motor1.setDirection(DcMotorSimple.Direction.FORWARD);
+                motor1.setDirection(DcMotor.Direction.REVERSE);
+                motor2.setDirection(DcMotor.Direction.FORWARD);
+                motor3.setDirection(DcMotor.Direction.FORWARD);
+                motor4.setDirection(DcMotor.Direction.FORWARD);
                 forward = new DcMotor[]{motor1, motor2, motor3, motor4};
-                right = new DcMotor[]{motor1, motor3};
-                left = new DcMotor[]{motor2, motor4};
+                right = new DcMotor[]{motor2, motor4};
+                left = new DcMotor[]{motor1, motor3};
                 special = new DcMotor[]{motor1, motor4};
                 unique = new DcMotor[]{motor2, motor3};
                 break;
@@ -318,7 +318,14 @@ public class Anvil {
         for (DcMotor x : unique) x.setPower(-pace);
         for (DcMotor x : special) x.setPower(pace);
     }
-
+    public void moveRight(double pace){
+        for (DcMotor x : unique) x.setPower(-pace);
+        for (DcMotor x : special) x.setPower(pace);
+    }
+    public void moveLeft(double pace) {
+        for (DcMotor x : unique) x.setPower(pace);
+        for (DcMotor x : special) x.setPower(-pace);
+    }
     public void collectForTicks(int ticks, Telemetry telemetry) {
         for (DcMotor x : collect) {
             x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
