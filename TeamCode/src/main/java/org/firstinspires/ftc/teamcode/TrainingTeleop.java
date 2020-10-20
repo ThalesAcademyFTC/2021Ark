@@ -17,11 +17,14 @@ public class TrainingTeleop extends OpMode {
 
     @Override
     public void init() {
-        //robot = new Anvil(hardwareMap, Anvil.Drivetrain.MECHANUM, telemetry);
+        robot = new Anvil(hardwareMap, Anvil.Drivetrain.MECHANUM, telemetry);
     }
 
     @Override
     public void loop() {
-
+        robot.motor1.setPower(gamepad1.left_stick_x);
+        robot.motor2.setPower(gamepad1.right_stick_x);
+        robot.motor3.setPower(gamepad2.left_stick_x);
+        robot.motor4.setPower(gamepad2.right_stick_x);
     }
 }

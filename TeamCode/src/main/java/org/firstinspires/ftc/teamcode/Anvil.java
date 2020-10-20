@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -43,6 +44,7 @@ public class Anvil {
 
     public enum Drivetrain {
         HOLONOMIC,
+        MECHANUM,
         TANK,
         WEST_COAST,
         OMNIDRIVE,
@@ -78,6 +80,21 @@ public class Anvil {
                 //holonomic and mechanum special movements.
                 break;
              */
+            case MECHANUM:
+                motor1 = hwMap.dcMotor.get("motor1");
+                motor2 = hwMap.dcMotor.get("motor2");
+                motor3 = hwMap.dcMotor.get("motor3");
+                motor4 = hwMap.dcMotor.get("motor4");
+                motor1.setDirection(DcMotorSimple.Direction.FORWARD);
+                motor2.setDirection(DcMotorSimple.Direction.FORWARD);
+                motor1.setDirection(DcMotorSimple.Direction.FORWARD);
+                motor1.setDirection(DcMotorSimple.Direction.FORWARD);
+                forward = new DcMotor[]{motor1, motor2, motor3, motor4};
+                right = new DcMotor[]{motor1, motor3};
+                left = new DcMotor[]{motor2, motor4};
+                special = new DcMotor[]{motor1, motor4};
+                unique = new DcMotor[]{motor2, motor3};
+                break;
             case KARL:
                 motor1 = hwMap.dcMotor.get("motor1");
                 motor2 = hwMap.dcMotor.get("motor2");
