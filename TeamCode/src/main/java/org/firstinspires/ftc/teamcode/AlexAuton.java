@@ -35,28 +35,28 @@ public class AlexAuton extends LinearOpMode {
 
 //================================================================================================\\
 
-        robot.moveLeft(1);
+        robot.moveLeft(0.9);
         sleep(1000);
         robot.rest();
-        robot.moveBackward(1);
+        robot.moveBackward(0.9);
         sleep(1000);
         robot.rest();
-        robot.moveRight(1);
+        robot.moveRight(0.9);
         sleep(1000);
         robot.rest();
-        robot.moveForward(1);
+        robot.moveForward(0.9);
         sleep(1000);
         robot.rest();
-        robot.moveLeft(1);
+        robot.moveLeft(0.9);
         sleep(1000);
         robot.rest();
-        robot.moveBackward(1);
+        robot.moveBackward(0.9);
         sleep(1000);
         robot.rest();
-        robot.moveRight(1);
+        robot.moveRight(0.9);
         sleep(1000);
         robot.rest();
-        robot.moveForward(1);
+        robot.moveForward(0.9);
         sleep(1000);
         robot.rest();
 
