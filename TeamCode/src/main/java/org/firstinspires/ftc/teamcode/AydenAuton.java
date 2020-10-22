@@ -51,7 +51,6 @@ public class AydenAuton extends LinearOpMode {
         runtime.reset();
         telemetry.update();
         waitForStart();
-        robot.moveForTicks(100);
 
         robot.motor1.setPower(.6);
         robot.motor2.setPower(.6);
