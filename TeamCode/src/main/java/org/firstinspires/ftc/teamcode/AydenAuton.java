@@ -39,7 +39,7 @@ import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.MECHANUM;
 
 
 @Autonomous(name="AydenAuton", group="Pushbot")
-@Disabled
+//@Disabled
 
 public class AydenAuton extends LinearOpMode {
     private Anvil robot;
