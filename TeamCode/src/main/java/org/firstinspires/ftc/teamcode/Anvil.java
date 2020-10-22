@@ -326,6 +326,80 @@ public class Anvil {
         for (DcMotor x : unique) x.setPower(pace);
         for (DcMotor x : special) x.setPower(-pace);
     }
+    public void collectForTicks(int ticks, Telemetry telemetry) {
+        for (DcMotor x : collect) {
+            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            x.setTargetPosition(ticks);
+            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        this.collect(0.2);
+        while (collect[0].getCurrentPosition() > -ticks - 5 && collect[0].getCurrentPosition() < -ticks + 5) {
+            telemetry.addData("cencoder1", collect[0].getCurrentPosition());
+            telemetry.update();
+        }
+        for (DcMotor x : collect) {
+            x.setPower(0);
+            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+    }
+
+    public boolean touchyStatus() {
+        return !touchyBlock.getState();
+    }
+
+    public void armMotorEMove(int t) {
+        armMotor.setTargetPosition(t);
+        armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armMotor.setPower(1);
+        while (armMotor.getCurrentPosition() < t - 25 || armMotor.getCurrentPosition() > t + 25) {
+            continue;
+        }
+        armMotor.setPower(0);
+        armMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    }
+
+    public void armUpSpecial() {
+        moveForward(0);
+        if (touchyStatus()) {
+            armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            target = positions[0];
+            armMotorEMove(target);
+        } else if (target == positions[0]) {
+            target = positions[1];
+            armMotorEMove(target);
+        } else if (target == positions[1]) {
+            target = positions[2];
+            armMotorEMove(target);
+        }
+    }
+
+    public void armDownSpecial(Gamepad x) {
+        moveForward(0);
+        if (target == positions[0]) {
+            clawMove(0);
+            while (!touchyStatus()) {
+                armMotor.setPower(-0.5);
+                if (x.right_bumper) break;
+            }
+            clawMove(0.23);
+        } else if (target == positions[1]) {
+            target = positions[0];
+            armMotorEMove(target);
+        } else if (target == positions[2]) {
+            target = positions[1];
+            armMotorEMove(target);
+        }
+    }
+
+    public void downOverride(Gamepad x) {
+        moveForward(0);
+        clawMove(0);
+        while (!touchyStatus()) {
+            armMotor.setPower(-1);
+            if (x.right_bumper) break;
+        }
+        clawMove(0.23);
+    }
 
     public void moveFastForTicks(int ticks) {
         //Blocks until the robot has gotten to the desired location.
@@ -350,8 +424,104 @@ public class Anvil {
         rservo2.setPosition(1 - x);
     }
 
+    public void skyMove(double pos) {
+        skyServo.setPosition(pos);
+    }
+
+    public void moveForTicksBadly(int ticks) {
+        //Blocks until the robot has gotten to the desired location.
+        this.rest();
+        for (DcMotor x : forward) {
+            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            x.setTargetPosition(-ticks);
+            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        this.moveForward(0.25);
+        while (forward[0].isBusy()) {
+            continue;
+        }
+        for (DcMotor x : forward) {
+            x.setPower(0);
+            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+    }
+
+    public void moveForTicks(int ticks) {
+        //Blocks until the robot has gotten to the desired location.
+        this.rest();
+        for (DcMotor x : forward) {
+            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            x.setTargetPosition(-ticks);
+            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        this.moveForward(0.25);
+        while (forward[0].isBusy()) {
+            continue;
+        }
+        for (DcMotor x : forward) {
+            x.setPower(0);
+            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+    }
+
+    public void MSForTicks(int ticks) {
+        //Blocks until the robot has gotten to the desired location.
+        this.rest();
+        for (DcMotor x : unique) {
+            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            x.setTargetPosition(ticks);
+            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        for (DcMotor x : special) {
+            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            x.setTargetPosition(-ticks);
+            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        this.moveForward(0.25);
+        while (unique[0].isBusy() && special[0].isBusy()) {
+            continue;
+        }
+        for (DcMotor x : forward) {
+            x.setPower(0);
+            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+    }
+
+    public void turnForTicks(int ticks) { //positive = right
+        //Blocks until the robot has gotten to the desired location.
+        this.rest();
+        for (DcMotor x : right) {
+            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            x.setTargetPosition(-ticks);
+            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        for (DcMotor x : left) {
+            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            x.setTargetPosition(ticks);
+            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+
+        this.moveForward(0.25);
+        while ((right[0].getCurrentPosition() < ticks - 25 || right[0].getCurrentPosition() > ticks + 25) && (left[0].getCurrentPosition() < ticks - 25 || left[0].getCurrentPosition() > ticks + 25)) {
+            continue;
+        }
+        for (DcMotor x : forward) {
+            x.setPower(0);
+            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+    }
+
     public void clawMove(double pos) {
         servo1.setPosition(pos);
+    }
+
+    public void collect(double pow) {
+        for (DcMotor x : collect) x.setPower(pow);
+    }
+
+    public void moveByInches(double inches) {
+        //Requires that the "ticksPerInch" variable is correctly set.
+        moveForTicks((int) (inches * ticksPerInch));
     }
 
     private void sleep(long milliseconds) {
@@ -363,13 +533,13 @@ public class Anvil {
         }
     }
 
-    /*public void moveX(float ox, float x) {
+    public void moveX(float ox, float x) {
         this.moveByInches((int) ((ox - x) * 25.4));
     }
 
     public void moveY(float oy, float y) {
         this.moveByInches((int) ((oy - y) * 25.4));
-    }*/
+    }
 
 
     public double getX(VuforiaTrackable trackable) {
@@ -399,131 +569,4 @@ public class Anvil {
             return 1000;
         }
     }
-//Autonomous Easy to Read Commands
-public void turnLeftFT(int ticks) {
-    //Blocks until the robot has gotten to the desired location.
-    this.rest();
-    for (DcMotor x : right) {
-        x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        x.setTargetPosition(ticks);
-        x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-    }
-    for (DcMotor x : left) {
-        x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        x.setTargetPosition(-ticks);
-        x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-    }
-
-    this.moveForward(0.25);
-    while ((right[0].getCurrentPosition() < ticks - 25 || right[0].getCurrentPosition() > ticks + 25) && (left[0].getCurrentPosition() < ticks - 25 || left[0].getCurrentPosition() > ticks + 25)) {
-        continue;
-    }
-    for (DcMotor x : forward) {
-        x.setPower(0);
-        x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-    }
-}
-    public void turnRightFT(int ticks) {
-        //Blocks until the robot has gotten to the desired location.
-        this.rest();
-        for (DcMotor x : right) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        for (DcMotor x : left) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(-ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-
-        this.moveForward(0.25);
-        while ((right[0].getCurrentPosition() < ticks - 25 || right[0].getCurrentPosition() > ticks + 25) && (left[0].getCurrentPosition() < ticks - 25 || left[0].getCurrentPosition() > ticks + 25)) {
-            continue;
-        }
-        for (DcMotor x : forward) {
-            x.setPower(0);
-            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        }
-    }
-    public void moveLeftFT(int ticks) {
-        //Blocks until the robot has gotten to the desired location.
-        this.rest();
-        for (DcMotor x : unique) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(-ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        for (DcMotor x : special) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        this.moveForward(0.25);
-        while (unique[0].isBusy() && special[0].isBusy()) {
-            continue;
-        }
-        for (DcMotor x : forward) {
-            x.setPower(0);
-            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        }
-    }
-    public void moveRightFT(int ticks) {
-        //Blocks until the robot has gotten to the desired location.
-        this.rest();
-        for (DcMotor x : unique) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        for (DcMotor x : special) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(-ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        this.moveForward(0.25);
-        while (unique[0].isBusy() && special[0].isBusy()) {
-            continue;
-        }
-        for (DcMotor x : forward) {
-            x.setPower(0);
-            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        }
-    }
-    public void moveForwardFT(int ticks) {
-        //Blocks until the robot has gotten to the desired location.
-        this.rest();
-        for (DcMotor x : forward) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(-ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        this.moveForward(0.25);
-        while (forward[0].isBusy()) {
-            continue;
-        }
-        for (DcMotor x : forward) {
-            x.setPower(0);
-            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        }
-    }
-    public void moveBackwardFT(int ticks) {
-        //Blocks until the robot has gotten to the desired location.
-        this.rest();
-        for (DcMotor x : forward) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        this.moveForward(0.25);
-        while (forward[0].isBusy()) {
-            continue;
-        }
-        for (DcMotor x : forward) {
-            x.setPower(0);
-            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        }
-    }
-
-
 }
