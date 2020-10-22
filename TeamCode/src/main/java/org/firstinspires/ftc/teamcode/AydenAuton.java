@@ -53,10 +53,21 @@ public class AydenAuton extends LinearOpMode {
         waitForStart();
         robot.moveForTicks(100);
 
+        robot.motor1.setPower(.6);
+        robot.motor2.setPower(.6);
+        robot.motor3.setPower(.6);
+        robot.motor4.setPower(.6);
+        robot.moveForward(.5);
+        robot.moveBackward(.5);
 
 
 
-        while (opModeIsActive() && runtime.milliseconds() < 30000) {
+
+
+
+
+
+        while (opModeIsActive() && runtime.milliseconds() < 2500) {
 
 
 
