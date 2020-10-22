@@ -51,6 +51,11 @@ public class GabeAuton extends LinearOpMode {
         telemetry.update();
         waitForStart();
 
+        robot.moveForwardFT(200);
+        robot.moveRightFT(200);
+        robot.moveBackwardFT(200);
+        robot.moveLeftFT(200);
+
 
         while (opModeIsActive() && runtime.milliseconds() < 30000) {
 
