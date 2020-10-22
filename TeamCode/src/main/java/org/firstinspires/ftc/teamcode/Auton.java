@@ -53,8 +53,6 @@ public class Auton extends LinearOpMode {
         waitForStart();
 
 
-
-
         while (opModeIsActive() && runtime.milliseconds() < 30000) {
 
 
