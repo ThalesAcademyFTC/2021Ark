@@ -15,7 +15,7 @@ import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.MECHANUM;
 //================================================================================================\\
 
 @Autonomous(name="AlexAuton", group="Pushbot")
-@Disabled
+//@Disabled
 
 //================================================================================================\\
 
