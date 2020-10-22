@@ -34,14 +34,13 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.EVAN;
 import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.MECHANUM;
 
 
 @Autonomous(name="Auton", group="Pushbot")
 @Disabled
 
-public class Auton extends LinearOpMode {
+public class GabeAuton extends LinearOpMode {
     private Anvil robot;
     private ElapsedTime runtime = new ElapsedTime();
     @Override

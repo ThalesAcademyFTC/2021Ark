@@ -45,7 +45,7 @@ public class AlexAuton extends LinearOpMode {
 
 //================================================================================================\\
 
-        while (opModeIsActive() && runtime.milliseconds() < 2) {
+        while (opModeIsActive() && runtime.milliseconds() < 30000) {
         }
     }
 }
