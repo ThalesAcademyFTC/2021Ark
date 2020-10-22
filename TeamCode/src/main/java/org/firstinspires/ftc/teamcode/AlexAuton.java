@@ -51,7 +51,6 @@ public class AlexAuton extends LinearOpMode {
         runtime.reset();
         telemetry.update();
         waitForStart();
-        robot.moveForTicks(100);
 
 
 

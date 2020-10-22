@@ -446,82 +446,12 @@ public class Anvil {
         }
     }
 
-    public void moveForTicks(int ticks) {
-        //Blocks until the robot has gotten to the desired location.
-        this.rest();
-        for (DcMotor x : forward) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(-ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        this.moveForward(0.25);
-        while (forward[0].isBusy()) {
-            continue;
-        }
-        for (DcMotor x : forward) {
-            x.setPower(0);
-            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        }
-    }
-
-    public void MSForTicks(int ticks) {
-        //Blocks until the robot has gotten to the desired location.
-        this.rest();
-        for (DcMotor x : unique) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        for (DcMotor x : special) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(-ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        this.moveForward(0.25);
-        while (unique[0].isBusy() && special[0].isBusy()) {
-            continue;
-        }
-        for (DcMotor x : forward) {
-            x.setPower(0);
-            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        }
-    }
-
-    public void turnForTicks(int ticks) { //positive = right
-        //Blocks until the robot has gotten to the desired location.
-        this.rest();
-        for (DcMotor x : right) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(-ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        for (DcMotor x : left) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-
-        this.moveForward(0.25);
-        while ((right[0].getCurrentPosition() < ticks - 25 || right[0].getCurrentPosition() > ticks + 25) && (left[0].getCurrentPosition() < ticks - 25 || left[0].getCurrentPosition() > ticks + 25)) {
-            continue;
-        }
-        for (DcMotor x : forward) {
-            x.setPower(0);
-            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        }
-    }
-
     public void clawMove(double pos) {
         servo1.setPosition(pos);
     }
 
     public void collect(double pow) {
         for (DcMotor x : collect) x.setPower(pow);
-    }
-
-    public void moveByInches(double inches) {
-        //Requires that the "ticksPerInch" variable is correctly set.
-        moveForTicks((int) (inches * ticksPerInch));
     }
 
     private void sleep(long milliseconds) {
@@ -533,7 +463,7 @@ public class Anvil {
         }
     }
 
-    public void moveX(float ox, float x) {
+  /*  public void moveX(float ox, float x) {
         this.moveByInches((int) ((ox - x) * 25.4));
     }
 
@@ -541,7 +471,7 @@ public class Anvil {
         this.moveByInches((int) ((oy - y) * 25.4));
     }
 
-
+*/
     public double getX(VuforiaTrackable trackable) {
         if (((VuforiaTrackableDefaultListener) trackable.getListener()).isVisible()) {
             OpenGLMatrix robotLocationTransform = ((VuforiaTrackableDefaultListener) trackable.getListener()).getUpdatedRobotLocation();
@@ -567,6 +497,130 @@ public class Anvil {
             return lastLocation.getTranslation().get(1);
         } else {
             return 1000;
+        }
+    }
+    public void turnRightFT(int ticks) {
+        //Blocks until the robot has gotten to the desired location.
+        this.rest();
+        for (DcMotor x : right) {
+            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            x.setTargetPosition(-ticks);
+            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        for (DcMotor x : left) {
+            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            x.setTargetPosition(ticks);
+            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+
+        this.moveForward(0.25);
+        while ((right[0].getCurrentPosition() < ticks - 25 || right[0].getCurrentPosition() > ticks + 25) && (left[0].getCurrentPosition() < ticks - 25 || left[0].getCurrentPosition() > ticks + 25)) {
+            continue;
+        }
+        for (DcMotor x : forward) {
+            x.setPower(0);
+            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+    }
+    public void turnLeftFT(int ticks) {
+        //Blocks until the robot has gotten to the desired location.
+        this.rest();
+        for (DcMotor x : right) {
+            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            x.setTargetPosition(ticks);
+            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        for (DcMotor x : left) {
+            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            x.setTargetPosition(-ticks);
+            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+
+        this.moveForward(0.25);
+        while ((right[0].getCurrentPosition() < ticks - 25 || right[0].getCurrentPosition() > ticks + 25) && (left[0].getCurrentPosition() < ticks - 25 || left[0].getCurrentPosition() > ticks + 25)) {
+            continue;
+        }
+        for (DcMotor x : forward) {
+            x.setPower(0);
+            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+    }
+    public void moveRightFT(int ticks) {
+        //Blocks until the robot has gotten to the desired location.
+        this.rest();
+        for (DcMotor x : unique) {
+            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            x.setTargetPosition(ticks);
+            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        for (DcMotor x : special) {
+            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            x.setTargetPosition(-ticks);
+            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        this.moveForward(0.25);
+        while (unique[0].isBusy() && special[0].isBusy()) {
+            continue;
+        }
+        for (DcMotor x : forward) {
+            x.setPower(0);
+            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+    }
+    public void moveLeftFT(int ticks) {
+        //Blocks until the robot has gotten to the desired location.
+        this.rest();
+        for (DcMotor x : unique) {
+            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            x.setTargetPosition(-ticks);
+            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        for (DcMotor x : special) {
+            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            x.setTargetPosition(ticks);
+            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        this.moveForward(0.25);
+        while (unique[0].isBusy() && special[0].isBusy()) {
+            continue;
+        }
+        for (DcMotor x : forward) {
+            x.setPower(0);
+            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+    }
+    public void moveForwardFT(int ticks) {
+        //Blocks until the robot has gotten to the desired location.
+        this.rest();
+        for (DcMotor x : forward) {
+            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            x.setTargetPosition(-ticks);
+            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        this.moveForward(0.25);
+        while (forward[0].isBusy()) {
+            continue;
+        }
+        for (DcMotor x : forward) {
+            x.setPower(0);
+            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+    }
+    public void moveBackwardFT(int ticks) {
+        //Blocks until the robot has gotten to the desired location.
+        this.rest();
+        for (DcMotor x : forward) {
+            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            x.setTargetPosition(ticks);
+            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        this.moveForward(0.25);
+        while (forward[0].isBusy()) {
+            continue;
+        }
+        for (DcMotor x : forward) {
+            x.setPower(0);
+            x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
     }
 }
