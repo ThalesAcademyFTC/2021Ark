@@ -69,7 +69,7 @@ public class AydenAuton extends LinearOpMode {
 
 
 
-        while (opModeIsActive() && runtime.milliseconds() < 2500) {
+        while (opModeIsActive() && runtime.milliseconds() < 25000) {
 
 
 
