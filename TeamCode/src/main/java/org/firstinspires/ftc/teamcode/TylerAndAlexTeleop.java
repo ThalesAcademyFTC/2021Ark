@@ -84,11 +84,13 @@ public class TylerAndAlexTeleop extends OpMode {
             robot.motor3.setPower(1);
             robot.motor4.setPower(-1);
         } else if (gamepad1.left_bumper){
+            //turn left
            robot.motor1.setPower(-1);
            robot.motor2.setPower(1);
            robot.motor3.setPower(-1);
            robot.motor4.setPower(1);
         } else if(gamepad1.right_bumper){
+            //turn right
             robot.motor1.setPower(1);
             robot.motor2.setPower(-1);
             robot.motor3.setPower(1);
