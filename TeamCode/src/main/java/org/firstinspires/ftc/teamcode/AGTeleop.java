@@ -17,7 +17,7 @@ public class AGTeleop extends OpMode {
 
     @Override
     public void init() {
-        //robot = new Anvil(hardwareMap, Anvil.Drivetrain.MECHANUM, telemetry);
+        robot = new Anvil(hardwareMap, Anvil.Drivetrain.MECHANUM, telemetry);
     }
 
     @Override
