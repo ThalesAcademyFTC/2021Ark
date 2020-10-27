@@ -513,7 +513,7 @@ public class Anvil {
             x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
 
-        this.moveForward(0.25);
+        this.moveForward(0.5);
         while ((right[0].getCurrentPosition() < ticks - 25 || right[0].getCurrentPosition() > ticks + 25) && (left[0].getCurrentPosition() < ticks - 25 || left[0].getCurrentPosition() > ticks + 25)) {
             continue;
         }
@@ -536,7 +536,7 @@ public class Anvil {
             x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
 
-        this.moveForward(0.25);
+        this.moveForward(0.5);
         while ((right[0].getCurrentPosition() < ticks - 25 || right[0].getCurrentPosition() > ticks + 25) && (left[0].getCurrentPosition() < ticks - 25 || left[0].getCurrentPosition() > ticks + 25)) {
             continue;
         }
@@ -558,7 +558,7 @@ public class Anvil {
             x.setTargetPosition(-ticks);
             x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
-        this.moveForward(0.25);
+        this.moveForward(0.5);
         while (unique[0].isBusy() && special[0].isBusy()) {
             continue;
         }
@@ -580,7 +580,7 @@ public class Anvil {
             x.setTargetPosition(ticks);
             x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
-        this.moveForward(0.25);
+        this.moveForward(0.5);
         while (unique[0].isBusy() && special[0].isBusy()) {
             continue;
         }
@@ -594,10 +594,10 @@ public class Anvil {
         this.rest();
         for (DcMotor x : forward) {
             x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(-ticks);
+            x.setTargetPosition(ticks);
             x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
-        this.moveForward(0.25);
+        this.moveForward(0.5);
         while (forward[0].isBusy()) {
             continue;
         }
@@ -611,10 +611,10 @@ public class Anvil {
         this.rest();
         for (DcMotor x : forward) {
             x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(ticks);
+            x.setTargetPosition(-ticks);
             x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
-        this.moveForward(0.25);
+        this.moveForward(0.5);
         while (forward[0].isBusy()) {
             continue;
         }
