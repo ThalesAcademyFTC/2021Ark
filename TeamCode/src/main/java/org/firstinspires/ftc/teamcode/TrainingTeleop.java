@@ -31,14 +31,8 @@ public class TrainingTeleop extends OpMode {
         telemetry.addData("encoder4", robot.motor4.getCurrentPosition());
         telemetry.update();
         if (gamepad1.x){
-            robot.motor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            robot.motor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            robot.motor3.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            robot.motor4.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            robot.motor1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            robot.motor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            robot.motor3.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            robot.motor4.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            robot.motor1.setPower(1);
+            robot.motor4.setPower(1);
         }
 
         if (gamepad1.atRest()) robot.rest();

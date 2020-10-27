@@ -87,7 +87,7 @@ public class Anvil {
                 motor4 = hwMap.dcMotor.get("motor4");
                 motor1.setDirection(DcMotor.Direction.REVERSE);
                 motor2.setDirection(DcMotor.Direction.FORWARD);
-                motor3.setDirection(DcMotor.Direction.FORWARD);
+                motor3.setDirection(DcMotor.Direction.REVERSE);
                 motor4.setDirection(DcMotor.Direction.FORWARD);
                 forward = new DcMotor[]{motor1, motor2, motor3, motor4};
                 right = new DcMotor[]{motor2, motor4};
@@ -598,7 +598,9 @@ public class Anvil {
             x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
         this.moveForward(0.5);
-        while (forward[0].isBusy()) {
+        while (forward[3].getCurrentPosition() > ticks+20 || forward[3].getCurrentPosition() < ticks-20) {
+            telemetry.addData("encoder1", forward[3].getCurrentPosition());
+            telemetry.update();
             continue;
         }
         for (DcMotor x : forward) {
@@ -615,7 +617,9 @@ public class Anvil {
             x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
         this.moveForward(0.5);
-        while (forward[0].isBusy()) {
+        while (forward[0].getCurrentPosition() > ticks-20 || forward[0].getCurrentPosition() < ticks+20) {
+            telemetry.addData("encoder1", forward[0].getCurrentPosition());
+            telemetry.update();
             continue;
         }
         for (DcMotor x : forward) {
