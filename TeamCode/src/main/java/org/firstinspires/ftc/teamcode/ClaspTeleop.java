@@ -27,6 +27,7 @@ public class ClaspTeleop extends OpMode {
             if (Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)) {
                 robot.turnRight(gamepad1.left_stick_x);
             } else robot.moveBackward(gamepad1.left_stick_y);
+
         }
     }
 }
