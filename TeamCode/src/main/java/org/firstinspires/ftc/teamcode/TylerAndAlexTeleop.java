@@ -22,7 +22,8 @@ public class TylerAndAlexTeleop extends OpMode {
 
     @Override
     public void loop() {
-
+    telemetry.addData("gamepad1y", gamepad1.left_stick_y);
+    telemetry.update();
 //====================================Movement====================================================\\
 
         robot.moveForward(gamepad1.left_stick_y);
@@ -99,13 +100,13 @@ public class TylerAndAlexTeleop extends OpMode {
         //impotant comment========================================================================//
 //====================================Movement====================================================\\
 
-        robot.moveBackward(gamepad2.left_stick_y);
-        robot.moveRight(gamepad2.right_stick_x);
+      //  robot.moveBackward(gamepad2.left_stick_y);
+      //  robot.moveRight(gamepad2.right_stick_x);
 
 //====================================Turning=====================================================\\
 
-        robot.turnRight(gamepad2.left_trigger);
-        robot.turnLeft(gamepad2.right_trigger);
+      //  robot.turnRight(gamepad2.left_trigger);
+     //   robot.turnLeft(gamepad2.right_trigger);
 
 //================================Diagonal Movement===============================================\\
 
