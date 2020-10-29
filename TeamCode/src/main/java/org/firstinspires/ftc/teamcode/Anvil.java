@@ -45,6 +45,7 @@ public class Anvil {
     public enum Drivetrain {
         HOLONOMIC,
         MECHANUM,
+        UNNAMED,
         TANK,
         WEST_COAST,
         OMNIDRIVE,
@@ -80,7 +81,7 @@ public class Anvil {
                 //holonomic and mechanum special movements.
                 break;
              */
-            case MECHANUM:
+            case UNNAMED:
                 motor1 = hwMap.dcMotor.get("motor1");
                 motor2 = hwMap.dcMotor.get("motor2");
                 motor3 = hwMap.dcMotor.get("motor3");
@@ -88,7 +89,7 @@ public class Anvil {
                 motor1.setDirection(DcMotor.Direction.REVERSE);
                 motor2.setDirection(DcMotor.Direction.FORWARD);
                 motor3.setDirection(DcMotor.Direction.FORWARD);
-                motor4.setDirection(DcMotor.Direction.FORWARD);
+                motor4.setDirection(DcMotor.Direction.REVERSE);
                 forward = new DcMotor[]{motor1, motor2, motor3, motor4};
                 right = new DcMotor[]{motor2, motor4};
                 left = new DcMotor[]{motor1, motor3};
@@ -597,7 +598,7 @@ public class Anvil {
             x.setTargetPosition(ticks);
             x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
-        this.moveForward(0.5);
+        this.moveForward(0.3);
         while (forward[0].isBusy()) {
             continue;
         }
