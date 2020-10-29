@@ -26,13 +26,10 @@ public class TylerAndAlexTeleop extends OpMode {
     telemetry.update();
 //====================================Movement====================================================\\
 
-        robot.moveForward(gamepad1.left_stick_y);
+        robot.moveForward(-gamepad1.left_stick_y);
         robot.moveLeft(gamepad1.right_stick_x);
 
 //====================================Turning=====================================================\\
-
-        robot.turnLeft(gamepad1.left_trigger);
-        robot.turnRight(gamepad1.right_trigger);
 
 //================================Diagonal Movement===============================================\\
         if (gamepad1.atRest() && gamepad2.atRest()) robot.rest();
