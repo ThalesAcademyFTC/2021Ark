@@ -109,66 +109,66 @@ public class TylerAndAlexTeleop extends OpMode {
 
 //================================Diagonal Movement===============================================\\
 
-        if (gamepad2.dpad_down) {
-            robot.motor1.setPower(1);
-            robot.motor2.setPower(0);
-            robot.motor3.setPower(0);
-            robot.motor4.setPower(1);
-        } else if (gamepad2.dpad_up) {
+        if (gamepad2.dpad_up) {
             robot.motor1.setPower(-1);
             robot.motor2.setPower(0);
             robot.motor3.setPower(0);
             robot.motor4.setPower(-1);
-        } else if (gamepad2.dpad_left) {
-            robot.motor1.setPower(0);
-            robot.motor2.setPower(1);
-            robot.motor3.setPower(1);
-            robot.motor4.setPower(0);
+        } else if (gamepad2.dpad_down) {
+            robot.motor1.setPower(1);
+            robot.motor2.setPower(0);
+            robot.motor3.setPower(0);
+            robot.motor4.setPower(1);
         } else if (gamepad2.dpad_right) {
             robot.motor1.setPower(0);
             robot.motor2.setPower(-1);
             robot.motor3.setPower(-1);
             robot.motor4.setPower(0);
+        } else if (gamepad2.dpad_left) {
+            robot.motor1.setPower(0);
+            robot.motor2.setPower(1);
+            robot.motor3.setPower(1);
+            robot.motor4.setPower(0);
         }
 
 //=============================Dumb Stuff=========================================================\\
 
-        if (gamepad2.y) {
+        if (gamepad2.a) {
             //move backwards
-            robot.motor1.setPower(-1);
-            robot.motor2.setPower(-1);
-            robot.motor3.setPower(-1);
-            robot.motor4.setPower(-1);
-        } else if (gamepad2.a) {
+            robot.motor1.setPower(1);
+            robot.motor2.setPower(1);
+            robot.motor3.setPower(1);
+            robot.motor4.setPower(1);
+        } else if (gamepad2.y) {
             //move forward
-            robot.motor1.setPower(1);
-            robot.motor2.setPower(1);
-            robot.motor3.setPower(1);
-            robot.motor4.setPower(1);
-        } else if (gamepad2.b) {
-            //move left
-            robot.motor1.setPower(1);
+            robot.motor1.setPower(-1);
             robot.motor2.setPower(-1);
             robot.motor3.setPower(-1);
-            robot.motor4.setPower(1);
+            robot.motor4.setPower(-1);
         } else if (gamepad2.x) {
-            //move right
+            //move left
             robot.motor1.setPower(-1);
             robot.motor2.setPower(1);
             robot.motor3.setPower(1);
             robot.motor4.setPower(-1);
-        } else if (gamepad2.right_bumper) {
-            //turn left
-            robot.motor1.setPower(-1);
-            robot.motor2.setPower(1);
+        } else if (gamepad2.b) {
+            //move right
+            robot.motor1.setPower(1);
+            robot.motor2.setPower(-1);
             robot.motor3.setPower(-1);
             robot.motor4.setPower(1);
         } else if (gamepad2.left_bumper) {
-            //turn right
+            //turn left
             robot.motor1.setPower(1);
             robot.motor2.setPower(-1);
             robot.motor3.setPower(1);
             robot.motor4.setPower(-1);
+        } else if (gamepad2.right_bumper) {
+            //turn right
+            robot.motor1.setPower(-1);
+            robot.motor2.setPower(1);
+            robot.motor3.setPower(-1);
+            robot.motor4.setPower(1);
         }
     }
 }
