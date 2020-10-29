@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  */
 
 @TeleOp(name="TylerAndAlexTeleop", group="Pushbot")
-@Disabled
+//@Disabled
 public class TylerAndAlexTeleop extends OpMode {
 
     private Anvil robot;
@@ -34,8 +34,8 @@ public class TylerAndAlexTeleop extends OpMode {
         robot.turnRight(gamepad1.right_trigger);
 
 //================================Diagonal Movement===============================================\\
-
-        if (gamepad1.dpad_up) {
+        if (gamepad1.atRest() && gamepad2.atRest()) robot.rest();
+        else if (gamepad1.dpad_up) {
             robot.motor1.setPower(1);
             robot.motor2.setPower(0);
             robot.motor3.setPower(0);
@@ -55,11 +55,7 @@ public class TylerAndAlexTeleop extends OpMode {
             robot.motor2.setPower(-1);
             robot.motor3.setPower(-1);
             robot.motor4.setPower(0);
-        }
-
-//=============================Dumb Stuff=========================================================\\
-
-        if (gamepad1.a) {
+        } else if (gamepad1.a) {
             //move backwards
             robot.motor1.setPower(-1);
             robot.motor2.setPower(-1);
