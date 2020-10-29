@@ -53,6 +53,12 @@ public class Anvil {
         SAM,
         KARL
     }
+    public enum direction {
+        TR,
+        TL,
+        BR,
+        BL,
+    }
 
     public Anvil(HardwareMap ahwMap, Drivetrain type, Telemetry telem) {
         hwMap = ahwMap;
@@ -623,5 +629,21 @@ public class Anvil {
             x.setPower(0);
             x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
+    }
+    public void DTR(int ticks) {
+        motor2.setPower(ticks);
+        motor3.setPower(ticks);
+    }
+    public void DTl(int ticks) {
+        motor1.setPower(ticks);
+        motor4.setPower(ticks);
+    }
+    public void DBL(int ticks){
+        motor3.setPower(-ticks);
+        motor2.setPower(-ticks);
+    }
+    public void DBR(int ticks){
+        motor1.setPower(-ticks);
+        motor4.setPower(-ticks);
     }
 }

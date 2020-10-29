@@ -110,25 +110,13 @@ public class TylerAndAlexTeleop extends OpMode {
 //================================Diagonal Movement===============================================\\
 
         if (gamepad2.dpad_down) {
-            robot.motor1.setPower(1);
-            robot.motor2.setPower(0);
-            robot.motor3.setPower(0);
-            robot.motor4.setPower(1);
+            robot.DTl(1);
         } else if (gamepad2.dpad_up) {
-            robot.motor1.setPower(-1);
-            robot.motor2.setPower(0);
-            robot.motor3.setPower(0);
-            robot.motor4.setPower(-1);
+            robot.DTR(1);
         } else if (gamepad2.dpad_left) {
-            robot.motor1.setPower(0);
-            robot.motor2.setPower(1);
-            robot.motor3.setPower(1);
-            robot.motor4.setPower(0);
+            robot.DBL(1);
         } else if (gamepad2.dpad_right) {
-            robot.motor1.setPower(0);
-            robot.motor2.setPower(-1);
-            robot.motor3.setPower(-1);
-            robot.motor4.setPower(0);
+            robot.DBR(1);
         }
 
 //=============================Dumb Stuff=========================================================\\
