@@ -24,6 +24,18 @@ public class TylerTeleop extends OpMode {
 
     @Override
     public void loop() {
-        f.mf(-gamepad1.left_stick_x);
+        if (gamepad1.atRest())robot.rest();
+        else if (gamepad1.right_stick_x > 0.5){
+            f.mr(1);
+        }
+        else if (gamepad1.right_stick_x > -0.5){
+            f.ml(1);
+        }
+        else if (gamepad1.left_stick_y > -0.5){
+            f.mf(1);
+        }
+        else if (gamepad1.left_stick_y > 0.5){
+            f.mb(1);
+        }
     }
 }
