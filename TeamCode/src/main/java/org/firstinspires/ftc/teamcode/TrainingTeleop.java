@@ -23,7 +23,6 @@ public class TrainingTeleop extends OpMode {
 
     @Override
 
-
     public void loop() {
         telemetry.addData("encoder1", robot.motor1.getCurrentPosition());
         telemetry.addData("encoder2", robot.motor2.getCurrentPosition());
