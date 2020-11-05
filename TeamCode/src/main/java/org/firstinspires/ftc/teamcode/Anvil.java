@@ -630,20 +630,4 @@ public class Anvil {
             x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
     }
-    public void dtr(int ticks) {
-        motor2.setPower(ticks);
-        motor3.setPower(ticks);
-    }
-    public void dtl(int ticks) {
-        motor1.setPower(ticks);
-        motor4.setPower(ticks);
-    }
-    public void dbl(int ticks){
-        motor3.setPower(-ticks);
-        motor2.setPower(-ticks);
-    }
-    public void dbr(int ticks){
-        motor1.setPower(-ticks);
-        motor4.setPower(-ticks);
-    }
 }
