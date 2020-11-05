@@ -52,19 +52,51 @@ public class AydenAuton extends LinearOpMode {
         telemetry.update();
         waitForStart();
 
+
         robot.motor1.setPower(.6);
         robot.motor2.setPower(.6);
         robot.motor3.setPower(.6);
         robot.motor4.setPower(.6);
-        sleep(600);
-        robot.moveForward(.5);
-        sleep(600);
-        robot.moveLeft(.5);
-        sleep(600);
         robot.moveBackward(.5);
-        sleep(600);
-        robot.moveRight(.5);
-        robot.rest();
+        sleep(1000);
+        robot.moveForward(.5);
+        sleep(2000);
+        robot.moveBackward(.5);
+        sleep(1000);
+        robot.moveLeft(.5);
+        sleep(1000);
+                robot.moveRight(.5);
+                sleep(2000);
+                robot.moveForward(.5);
+                sleep(1000);
+                robot.moveLeft(.5);
+                sleep(2000);
+                robot.moveBackward(.5);
+                sleep(2000);
+                robot.moveRight(.5);
+                sleep(2000);
+                robot.moveForward(.5);
+                sleep(1000);
+                robot.moveRight(.5);
+                sleep(1000);
+                robot.motor1.setPower(.8);
+                robot.motor2.setPower(0);
+                robot.motor3.setPower(0);
+                robot.motor4.setPower(0);
+                robot.moveForward(.5);
+                robot.motor1.setPower(0);
+                robot.motor2.setPower(0);
+                robot.motor3.setPower(0);
+                robot.motor4.setPower(.8);
+                robot.moveBackward(.5);
+                sleep(20000);
+                robot.rest();
+
+
+
+
+
+
 
 
 
