@@ -112,19 +112,38 @@ public class F {
             }
         }
     }
-    public void mf(double speed){
+    public void turnRight(double pace) {
+        if (hs) {
+            for (DcMotor x : right) x.setPower(-pace / 2);
+            for (DcMotor x : left) x.setPower(pace / 2);
+        } else {
+            for (DcMotor x : right) x.setPower(-pace);
+            for (DcMotor x : left) x.setPower(pace);
+        }
+    }
+
+    public void turnLeft(double pace) {
+        if (hs) {
+            for (DcMotor x : left) x.setPower(-pace / 2);
+            for (DcMotor x : right) x.setPower(pace / 2);
+        } else {
+            for (DcMotor x : left) x.setPower(-pace);
+            for (DcMotor x : right) x.setPower(pace);
+        }
+    }
+    public void mf(double speed) {
         motor1.setPower(speed);
         motor2.setPower(speed);
         motor3.setPower(speed);
         motor4.setPower(speed);
     }
-    public void mb(double speed){
+    public void mb(double speed) {
        motor1.setPower(-speed);
        motor2.setPower(-speed);
        motor3.setPower(-speed);
        motor4.setPower(-speed);
     }
-    public void mr(double speed){
+    public void mr(double speed) {
         motor1.setPower(speed);
         motor4.setPower(speed);
     }
@@ -140,24 +159,18 @@ public class F {
         motor1.setPower(speed);
         motor4.setPower(speed);
     }
-    public void dbl(double speed){
+    public void dbl(double speed) {
         motor3.setPower(-speed);
         motor2.setPower(-speed);
     }
-    public void dbr(double speed){
+    public void dbr(double speed) {
         motor1.setPower(-speed);
         motor4.setPower(-speed);
     }
-    public void say(String word){
-        System.out.println(word);
+    public void tr(double speed) {
+        turnRight(speed);
     }
-    public void say(int num){
-        System.out.println(num);
-    }
-    public void add(int a,int b){
-        say(a + b);
-    }
-    public void sub(int c, int d){
-        say(c + d);
+    public void tl(double speed) {
+        turnLeft(speed);
     }
 }
