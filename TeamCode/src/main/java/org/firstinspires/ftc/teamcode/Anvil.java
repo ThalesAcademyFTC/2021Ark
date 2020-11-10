@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -24,6 +25,7 @@ public class Anvil {
     public DcMotor motor1, motor2, motor3, motor4, cmotor1, cmotor2;
     DigitalChannel touchyBlock, touchSensor;
     ColorSensor sensorColor;
+    RevColorSensorV3 colorSensorV3;
     public CRServo crservo1;
     public Servo servo1, rservo1, rservo2, skyServo;
     public DcMotor clawMotor, armMotor;
@@ -92,6 +94,7 @@ public class Anvil {
                 motor2 = hwMap.dcMotor.get("motor2");
                 motor3 = hwMap.dcMotor.get("motor3");
                 motor4 = hwMap.dcMotor.get("motor4");
+                sensorColor = hwMap.colorSensor.get("colorSensor");
                 motor1.setDirection(DcMotor.Direction.REVERSE);
                 motor2.setDirection(DcMotor.Direction.FORWARD);
                 motor3.setDirection(DcMotor.Direction.FORWARD);
