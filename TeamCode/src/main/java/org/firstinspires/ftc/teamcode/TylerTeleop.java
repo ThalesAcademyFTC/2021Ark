@@ -5,16 +5,15 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp(name="TylerTeleop", group="Pushbot")
-@Disabled
+//@Disabled
 public class TylerTeleop extends OpMode {
 
     private Anvil robot;
     private F f;
 
     @Override
-    public void init() {
-        robot = new Anvil(hardwareMap, Anvil.Drivetrain.MECHANUM, telemetry);
-        f = new F(hardwareMap, Anvil.Drivetrain.UNNAMED, telemetry);
+    public void init(){
+        f = new F(hardwareMap, Anvil.Drivetrain.MECHANUM, telemetry);
     }
 
     @Override

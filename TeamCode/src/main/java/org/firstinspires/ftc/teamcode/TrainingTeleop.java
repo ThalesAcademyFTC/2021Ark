@@ -18,7 +18,7 @@ public class TrainingTeleop extends OpMode {
 
     @Override
     public void init() {
-        robot = new Anvil(hardwareMap, Anvil.Drivetrain.UNNAMED, telemetry);
+        robot = new Anvil(hardwareMap, Anvil.Drivetrain.MECHANUM, telemetry);
     }
 
     @Override
