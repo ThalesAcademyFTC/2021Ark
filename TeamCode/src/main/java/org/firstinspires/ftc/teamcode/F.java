@@ -18,7 +18,7 @@ import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 
-public class F {
+public class F{
     //Define servo and motor variables
     public DcMotor motor1, motor2, motor3, motor4, cmotor1, cmotor2;
     DigitalChannel touchyBlock, touchSensor;
@@ -146,10 +146,14 @@ public class F {
     public void mr(double speed) {
         motor1.setPower(speed);
         motor4.setPower(speed);
+        motor2.setPower(-speed);
+        motor3.setPower(-speed);
     }
     public void ml(double speed) {
         motor2.setPower(speed);
         motor3.setPower(speed);
+        motor1.setPower(-speed);
+        motor4.setPower(-speed);
     }
     public void dtr(double speed) {
         motor2.setPower(speed);
@@ -168,9 +172,21 @@ public class F {
         motor4.setPower(-speed);
     }
     public void tr(double speed) {
-        turnRight(speed);
+        motor1.setPower(speed);
+        motor2.setPower(-speed);
+        motor3.setPower(speed);
+        motor4.setPower(-speed);
     }
     public void tl(double speed) {
-        turnLeft(speed);
+        motor1.setPower(-speed);
+        motor2.setPower(speed);
+        motor3.setPower(-speed);
+        motor4.setPower(speed);
+    }
+    public void rest(){
+        motor1.setPower(0);
+        motor2.setPower(0);
+        motor3.setPower(0);
+        motor4.setPower(0);
     }
 }

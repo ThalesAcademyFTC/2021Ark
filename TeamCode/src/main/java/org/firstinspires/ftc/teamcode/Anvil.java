@@ -94,7 +94,7 @@ public class Anvil {
                 motor2 = hwMap.dcMotor.get("motor2");
                 motor3 = hwMap.dcMotor.get("motor3");
                 motor4 = hwMap.dcMotor.get("motor4");
-                sensorColor = hwMap.colorSensor.get("colorSensor");
+               // sensorColor = hwMap.colorSensor.get("colorSensor");
                 motor1.setDirection(DcMotor.Direction.REVERSE);
                 motor2.setDirection(DcMotor.Direction.FORWARD);
                 motor3.setDirection(DcMotor.Direction.FORWARD);

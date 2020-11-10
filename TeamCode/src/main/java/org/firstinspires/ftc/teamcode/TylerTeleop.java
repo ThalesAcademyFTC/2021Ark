@@ -8,28 +8,19 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 //@Disabled
 public class TylerTeleop extends OpMode {
 
-    private Anvil robot;
     private F f;
 
     @Override
     public void init(){
-        f = new F(hardwareMap, Anvil.Drivetrain.MECHANUM, telemetry);
+        f = new F(hardwareMap, Anvil.Drivetrain.UNNAMED, telemetry);
     }
 
     @Override
     public void loop() {
         double speed = 1;
 
-        if (gamepad1.atRest())robot.rest();
-        else if (gamepad1.right_stick_x > 0.5) {
-            f.mr(speed);
-        } else if (gamepad1.right_stick_x > -0.5) {
-            f.ml(speed);
-        } else if (gamepad1.left_stick_y > -0.5) {
-            f.mf(speed);
-        } else if (gamepad1.left_stick_y > 0.5) {
-            f.mb(speed);
-        } else if (gamepad1.left_bumper) {
+        if (gamepad1.atRest())f.rest();
+        else if (gamepad1.left_bumper) {
             f.tl(speed);
         } else if(gamepad1.right_bumper) {
             f.tr(speed);
@@ -41,8 +32,7 @@ public class TylerTeleop extends OpMode {
             f.dbr(speed);
         } else if(gamepad1.dpad_left) {
             f.dtl(speed);
-        }
-        if(gamepad1.a) {
+        } else if(gamepad1.a) {
             speed = 1;
         } else if(gamepad1.b) {
             speed = 0.75;
@@ -51,6 +41,17 @@ public class TylerTeleop extends OpMode {
         }
         else if(gamepad1.y) {
             speed = 0.25;
+        }
+        else {
+            if (gamepad1.right_stick_x > 0.5) {
+                f.mr(speed);
+            } else if (gamepad1.right_stick_x < -0.5) {
+                f.ml(speed);
+            } else if (gamepad1.left_stick_y < -0.5) {
+                f.mf(speed);
+            } else if (gamepad1.left_stick_y > 0.5) {
+                f.mb(speed);
+            }
         }
     }
 }
