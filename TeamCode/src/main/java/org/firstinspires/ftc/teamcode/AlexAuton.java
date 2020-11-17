@@ -47,9 +47,12 @@ public class AlexAuton extends LinearOpMode {
         double h = 0.3;
         double i = 0.2;
         double j = 0.1;
+        int z = 1100;
+        int y = 2200;
+        int x = 3300;
 
 
-        robot.moveLeft(a);
+/*        robot.moveLeft(a);
         sleep(3300);
         robot.rest();
         robot.moveBackward(a);
@@ -72,6 +75,33 @@ public class AlexAuton extends LinearOpMode {
         robot.rest();
         robot.moveForward(a);
         sleep(6600);
+        robot.rest();
+        /*
+
+ */
+        robot.moveForward(a);
+        sleep(3300);
+        robot.rest();
+        robot.moveForward(a);
+        sleep(2200);
+        robot.rest();
+        robot.turnLeft(a);
+        sleep(1000);
+        robot.rest();
+        robot.moveForward(a);
+        sleep(1100);
+        robot.rest();
+        robot.turnLeft(a);
+        sleep(1000);
+        robot.rest();
+        robot.moveForward(a);
+        sleep(1100);
+        robot.rest();
+        robot.moveForward(a);
+        sleep(4400);
+        robot.rest();
+        robot.turnLeft(a);
+        sleep(2000);
         robot.rest();
 
 //================================================================================================\\
