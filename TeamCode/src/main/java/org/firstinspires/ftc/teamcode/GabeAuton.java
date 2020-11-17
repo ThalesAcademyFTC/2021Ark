@@ -53,23 +53,6 @@ public class GabeAuton extends LinearOpMode {
         waitForStart();
 
 
-        robot.moveForward(1);
-        robot.turnLeft(1);
-        robot.moveForward(1);
-        robot.turnLeft(1);
-        robot.moveForward(1);
-        robot.turnLeft(1);
-        robot.moveForward(1);
-        robot.turnLeft(.5);
-        robot.moveForward(.5);
-        robot.turnLeft(.5);
-        robot.moveForward(.5);
-        robot.turnLeft(.5);
-        robot.moveForward(.5);
-        robot.turnLeft(.5);
-        robot.moveForward(.5);
-        robot.turnLeft(.5);
-
         while (opModeIsActive() && runtime.milliseconds() < 30000) {
 
 
