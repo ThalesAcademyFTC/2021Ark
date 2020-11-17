@@ -80,6 +80,7 @@ public class AlexAuton extends LinearOpMode {
         /*
 
  */
+/*
         robot.moveForward(d);
         sleep(3300);
         robot.rest();
@@ -105,6 +106,17 @@ public class AlexAuton extends LinearOpMode {
         sleep(2000);
         robot.rest();
 
+ */
+
+        double red = robot.sensorColor.red();
+        double green = robot.sensorColor.green();
+        double blue = robot.sensorColor.blue();
+
+
+        robot.moveForward(0.5);
+
+        while (red > 10)
+            robot.rest();
 //================================================================================================\\
 
         while (opModeIsActive() && runtime.milliseconds() < 30000) {
