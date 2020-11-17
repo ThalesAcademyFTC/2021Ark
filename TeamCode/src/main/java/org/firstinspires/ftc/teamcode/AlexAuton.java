@@ -9,6 +9,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 //================================================================================================\\
 
+import org.firstinspires.ftc.robotcore.internal.camera.libuvc.api.UvcApiCameraCaptureRequest;
+
 import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.EVAN;
 import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.MECHANUM;
 
@@ -22,6 +24,7 @@ import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.MECHANUM;
 public class AlexAuton extends LinearOpMode {
     private Anvil robot;
     private ElapsedTime runtime = new ElapsedTime();
+
     @Override
     public void runOpMode() {
 
@@ -34,30 +37,41 @@ public class AlexAuton extends LinearOpMode {
         waitForStart();
 
 //================================================================================================\\
+        double a = 1.0;
+        double b = 0.9;
+        double c = 0.8;
+        double d = 0.7;
+        double e = 0.6;
+        double f = 0.5;
+        double g = 0.4;
+        double h = 0.3;
+        double i = 0.2;
+        double j = 0.1;
 
-        robot.moveLeft(0.9);
-        sleep(1000);
+
+        robot.moveLeft(a);
+        sleep(4400);
         robot.rest();
-        robot.moveBackward(0.9);
-        sleep(1000);
+        robot.moveBackward(a);
+        sleep(4400);
         robot.rest();
-        robot.moveRight(0.9);
-        sleep(1000);
+        robot.moveRight(a);
+        sleep(4400);
         robot.rest();
-        robot.moveForward(0.9);
-        sleep(1000);
+        robot.moveForward(a);
+        sleep(4400);
         robot.rest();
-        robot.moveLeft(0.9);
-        sleep(1000);
+        robot.moveLeft(a);
+        sleep(4400);
         robot.rest();
-        robot.moveBackward(0.9);
-        sleep(1000);
+        robot.moveBackward(a);
+        sleep(4400);
         robot.rest();
-        robot.moveRight(0.9);
-        sleep(1000);
+        robot.moveRight(a);
+        sleep(4400);
         robot.rest();
-        robot.moveForward(0.9);
-        sleep(1000);
+        robot.moveForward(a);
+        sleep(4400);
         robot.rest();
 
 //================================================================================================\\
