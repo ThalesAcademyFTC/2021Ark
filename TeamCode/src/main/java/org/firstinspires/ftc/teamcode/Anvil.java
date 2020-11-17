@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -25,7 +26,7 @@ public class Anvil {
     public DcMotor motor1, motor2, motor3, motor4, cmotor1, cmotor2;
     DigitalChannel touchyBlock, touchSensor;
     ColorSensor sensorColor;
-    RevColorSensorV3 colorSensorV3;
+    DistanceSensor sensorDistance;
     public CRServo crservo1;
     public Servo servo1, rservo1, rservo2, skyServo;
     public DcMotor clawMotor, armMotor;
@@ -54,12 +55,6 @@ public class Anvil {
         EVAN,
         SAM,
         KARL
-    }
-    public enum direction {
-        TR,
-        TL,
-        BR,
-        BL,
     }
 
     public Anvil(HardwareMap ahwMap, Drivetrain type, Telemetry telem) {
@@ -94,7 +89,8 @@ public class Anvil {
                 motor2 = hwMap.dcMotor.get("motor2");
                 motor3 = hwMap.dcMotor.get("motor3");
                 motor4 = hwMap.dcMotor.get("motor4");
-               // sensorColor = hwMap.colorSensor.get("colorSensor");
+                sensorColor = hwMap.get(ColorSensor.class, "colorDistanceSensor");
+                sensorDistance = hwMap.get(DistanceSensor.class, "colorDistanceSensor");
                 motor1.setDirection(DcMotor.Direction.REVERSE);
                 motor2.setDirection(DcMotor.Direction.FORWARD);
                 motor3.setDirection(DcMotor.Direction.FORWARD);
