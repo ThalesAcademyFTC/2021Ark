@@ -44,6 +44,8 @@ import org.firstinspires.ftc.teamcode.Anvil;
 
 import java.util.Locale;
 
+import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.UNNAMED;
+
 /*
  * This is an example LinearOpMode that shows how to use
  * the REV Robotics Color-Distance Sensor.
@@ -56,15 +58,11 @@ import java.util.Locale;
 @TeleOp(name = "Sensor: REVColorDistance", group = "Sensor")
 //@Disabled                            // Comment this out to add to the opmode list
 public class ColorSensorTest extends LinearOpMode {
-    ColorSensor sensorColor;
-    DistanceSensor sensorDistance;
+    private Anvil robot;
     @Override
     public void runOpMode() {
+        robot = new Anvil(hardwareMap, UNNAMED, telemetry);
             // get a reference to the color sensor.
-            sensorColor = hardwareMap.get(ColorSensor.class, "colorDistanceSensor");
-
-            // get a reference to the distance sensor that shares the same name.
-            sensorDistance = hardwareMap.get(DistanceSensor.class, "colorDistanceSensor");
         // get a reference to the color sensor.
         // hsvValues is an array that will hold the hue, saturation, and value information.
         float hsvValues[] = {0F, 0F, 0F};
@@ -90,18 +88,18 @@ public class ColorSensorTest extends LinearOpMode {
             // convert the RGB values to HSV values.
             // multiply by the SCALE_FACTOR.
             // then cast it back to int (SCALE_FACTOR is a double)
-            Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
-                    (int) (sensorColor.green() * SCALE_FACTOR),
-                    (int) (sensorColor.blue() * SCALE_FACTOR),
+            Color.RGBToHSV((int) (robot.sensorColor.red() * SCALE_FACTOR),
+                    (int) (robot.sensorColor.green() * SCALE_FACTOR),
+                    (int) (robot.sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
 
             // send the info back to driver station using telemetry function.
             telemetry.addData("Distance (cm)",
-                    String.format(Locale.US, "%.02f", sensorDistance.getDistance(DistanceUnit.CM)));
-            telemetry.addData("Alpha", sensorColor.alpha());
-            telemetry.addData("Red  ", sensorColor.red());
-            telemetry.addData("Green", sensorColor.green());
-            telemetry.addData("Blue ", sensorColor.blue());
+                    String.format(Locale.US, "%.02f", robot.sensorDistance.getDistance(DistanceUnit.CM)));
+            telemetry.addData("Alpha", robot.sensorColor.alpha());
+            telemetry.addData("Red  ", robot.sensorColor.red());
+            telemetry.addData("Green", robot.sensorColor.green());
+            telemetry.addData("Blue ", robot.sensorColor.blue());
             telemetry.addData("Hue", hsvValues[0]);
 
             // change the background color to match the color detected by the RGB sensor.

@@ -52,7 +52,6 @@ public class Auton extends LinearOpMode {
         runtime.reset();
         telemetry.update();
         waitForStart();
-
         while (opModeIsActive() && runtime.milliseconds() < 30000) {
 
 
