@@ -17,7 +17,7 @@ public class AGTeleop extends OpMode {
 
     @Override
     public void init() {
-        robot = new Anvil(hardwareMap, Anvil.Drivetrain.MECHANUM, telemetry);
+        robot = new Anvil(hardwareMap, Anvil.Drivetrain.UNNAMED, telemetry);
     }
 
     @Override
@@ -46,4 +46,3 @@ public class AGTeleop extends OpMode {
         }
     }
 }
-// your name is ayden, you smell like ayden, you look like ayden, you sound like ayden, YOU ARE THE, fattest of fingers
