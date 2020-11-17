@@ -115,7 +115,7 @@ public class AlexAuton extends LinearOpMode {
 
         robot.moveForward(0.5);
 
-        while (red > 10)
+        while (red < 10)
             robot.rest();
 //================================================================================================\\
 
