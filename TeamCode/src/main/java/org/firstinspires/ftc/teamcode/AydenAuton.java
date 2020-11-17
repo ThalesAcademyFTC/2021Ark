@@ -61,7 +61,7 @@ public class AydenAuton extends LinearOpMode {
         robot.moveForward(.6);
         sleep(1050);
         robot.moveForward(.6);
-        sleep(650);
+        sleep(400);
         robot.moveRight(.6);
         sleep(1100);
         robot.rest();
