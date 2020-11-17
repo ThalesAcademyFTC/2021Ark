@@ -13,6 +13,7 @@ import org.firstinspires.ftc.robotcore.internal.camera.libuvc.api.UvcApiCameraCa
 
 import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.EVAN;
 import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.MECHANUM;
+import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.UNNAMED;
 
 //================================================================================================\\
 
@@ -30,7 +31,7 @@ public class AlexAuton extends LinearOpMode {
 
 //================================================================================================\\
 
-        robot = new Anvil(hardwareMap, MECHANUM, telemetry);
+        robot = new Anvil(hardwareMap, UNNAMED, telemetry);
         telemetry.addData("Status", "Initialized");
         runtime.reset();
         telemetry.update();
