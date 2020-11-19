@@ -30,18 +30,16 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.MECHANUM;
 import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.UNNAMED;
 
 
 @Autonomous(name="GabeAuton", group="Pushbot")
 //@Disabled
 
-public class GabeAuton extends LinearOpMode {
+public class JAuton extends LinearOpMode {
     private Anvil robot;
     private ElapsedTime runtime = new ElapsedTime();
     @Override
@@ -53,13 +51,7 @@ public class GabeAuton extends LinearOpMode {
 
         waitForStart();
 
-        while (robot.sensorColor.red() < 110){
-            robot.moveForward(0.4);
-            telemetry.addData("redSensor", robot.sensorColor.red());
-            telemetry.update();
 
-        }
-        robot.rest();
 
         while (opModeIsActive() && runtime.milliseconds() < 30000) {
             telemetry.addData("redSensor", robot.sensorColor.red());
