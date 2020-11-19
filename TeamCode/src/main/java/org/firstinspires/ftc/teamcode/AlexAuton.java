@@ -38,6 +38,8 @@ public class AlexAuton extends LinearOpMode {
         waitForStart();
 
 //================================================================================================\\
+//========================================VARIABLES===============================================\\
+//================================================================================================\\
         double a = 1.0;
         double b = 0.9;
         double c = 0.8;
@@ -51,9 +53,16 @@ public class AlexAuton extends LinearOpMode {
         int z = 1100;
         int y = 2200;
         int x = 3300;
+//==============================DIFFERENT TYPE OF VARIABLES=======================================\\
+        double red = robot.sensorColor.red();
+        double green = robot.sensorColor.green();
+        double blue = robot.sensorColor.blue();
 
-
-/*        robot.moveLeft(a);
+//================================================================================================\\
+//=====================================RANDOM CODE================================================\\
+//================================================================================================\\
+        /*
+        robot.moveLeft(a);
         sleep(3300);
         robot.rest();
         robot.moveBackward(a);
@@ -77,10 +86,9 @@ public class AlexAuton extends LinearOpMode {
         robot.moveForward(a);
         sleep(6600);
         robot.rest();
-        /*
 
- */
-/*
+//=========================MORE RENDOM CODE=======================================================\\
+
         robot.moveForward(d);
         sleep(3300);
         robot.rest();
@@ -106,17 +114,24 @@ public class AlexAuton extends LinearOpMode {
         sleep(2000);
         robot.rest();
 
- */
-
-        double red = robot.sensorColor.red();
-        double green = robot.sensorColor.green();
-        double blue = robot.sensorColor.blue();
-
-
-        robot.moveForward(0.5);
+//======================================COLOR SENSOR CODE=========================================\\
 
         while (red < 10)
-            robot.rest();
+            robot.moveForward(0.5);
+ */
+
+//===============================MORE COLOR SENSOR CODE===========================================\\
+
+        robot.moveForward(0.4);
+        while (robot.sensorColor.red() < 200 && robot.sensorColor.green() < 200 && robot.sensorColor.blue() < 200)
+            continue;
+
+
+
+        while (robot.sensorColor.red() > 200 && robot.sensorColor.green() > 200 && robot.sensorColor.blue() > 200)
+            continue;
+        robot.rest();
+
 //================================================================================================\\
 
         while (opModeIsActive() && runtime.milliseconds() < 30000) {
