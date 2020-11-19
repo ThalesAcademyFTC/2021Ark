@@ -53,7 +53,7 @@ import java.util.List;
  */
 @TeleOp(name = "Concept: TensorFlow Object Detection Webcam", group = "Concept")
 @Disabled
-public class WobbleTargetRings extends LinearOpMode {
+public class WTR extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Quad";
     private static final String LABEL_SECOND_ELEMENT = "Single";
@@ -71,7 +71,7 @@ public class WobbleTargetRings extends LinearOpMode {
      * and paste it in to your code on the next line, between the double quotes.
      */
     private static final String VUFORIA_KEY =
-            " -- YOUR NEW VUFORIA KEY GOES HERE  --- ";
+            "AXeANof/////AAABmaDs6FJl000DqMZb1GO2za8OTVHuQt7JKLF1cPYd4n6ToTb5uU19/BWc39F/bsNlzfVOalKd3tJdD3X42NYGDc/4PIfKaeWQG2Km+Ge8ueZcxkflgpLg/jjvxYAcJ7me0MM+j/5pJX1WQQLQCjrb2eXn8oCARcCsQeVq4VA0QtJOBvaE6Bvz3T8LS8c1CiJlb64sC5cS55824oq9RjtsYeWhbfh1uOV+hVg74AdwCu3VZC8CFJQNRKNL0ZPALv6PZWclrppxVESZF+aSYX5SIZln6C1iwvQskiJV2T4Xy45OP5PmO0vGW8P2r86+yG6y046AOeECsrLtLqonxWIpYXjnHvWpNgbarU/vPQgQET6i";
 
     /**
      * {@link #vuforia} is the variable we will use to store our instance of the Vuforia

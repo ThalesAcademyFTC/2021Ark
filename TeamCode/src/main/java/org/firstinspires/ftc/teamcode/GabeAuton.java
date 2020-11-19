@@ -57,8 +57,8 @@ public class GabeAuton extends LinearOpMode {
             robot.moveForward(0.4);
             telemetry.addData("redSensor", robot.sensorColor.red());
             telemetry.update();
-
         }
+        while (robot.sensorColor.red() < 110 && robot.sensorColor.blue() < 110 )
         robot.rest();
 
         while (opModeIsActive() && runtime.milliseconds() < 30000) {
