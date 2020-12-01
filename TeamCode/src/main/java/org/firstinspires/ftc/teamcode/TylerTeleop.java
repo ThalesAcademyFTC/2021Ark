@@ -14,11 +14,10 @@ public class TylerTeleop extends OpMode {
     public void init(){
         robot = new Anvil(hardwareMap, Anvil.Drivetrain.UNNAMED, telemetry);
     }
-
+    double speed = 1;
+    double speed2 = 1;
     @Override
     public void loop() {
-        double speed = 1;
-        double speed2 = 1;
 
         if (gamepad1.left_bumper) {
             robot.turnLeft(speed2);
