@@ -60,8 +60,9 @@ public class AydenAuton extends LinearOpMode {
             continue;
         }
         robot.moveBackward(.3);
-        while (robot.sensorColor.red() < 100 || robot.sensorColor.blue() < 200 || robot.sensorColor.green() < 200)
-        robot.moveBackward(.3);
+        while (robot.sensorColor.red() < 100 || robot.sensorColor.blue() < 200 || robot.sensorColor.green() < 200){
+            continue;
+        }
         robot.rest();
 
 
