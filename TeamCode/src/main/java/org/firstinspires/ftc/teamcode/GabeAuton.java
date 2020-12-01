@@ -35,7 +35,10 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
+import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
+
+import java.util.List;
 
 import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.MECHANUM;
 import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.UNNAMED;
@@ -49,6 +52,7 @@ public class GabeAuton extends LinearOpMode {
     private static final String LABEL_FIRST_ELEMENT = "Quad";
     private static final String LABEL_SECOND_ELEMENT = "Single";
     private Anvil robot;
+    private WTR wtr;
     private ElapsedTime runtime = new ElapsedTime();
     private static final String VUFORIA_KEY =
             "AXeANof/////AAABmaDs6FJl000DqMZb1GO2za8OTVHuQt7JKLF1cPYd4n6ToTb5uU19/BWc39F/bsNlzfVOalKd3tJdD3X42NYGDc/4PIfKaeWQG2Km+Ge8ueZcxkflgpLg/jjvxYAcJ7me0MM+j/5pJX1WQQLQCjrb2eXn8oCARcCsQeVq4VA0QtJOBvaE6Bvz3T8LS8c1CiJlb64sC5cS55824oq9RjtsYeWhbfh1uOV+hVg74AdwCu3VZC8CFJQNRKNL0ZPALv6PZWclrppxVESZF+aSYX5SIZln6C1iwvQskiJV2T4Xy45OP5PmO0vGW8P2r86+yG6y046AOeECsrLtLqonxWIpYXjnHvWpNgbarU/vPQgQET6i";
@@ -58,24 +62,51 @@ public class GabeAuton extends LinearOpMode {
     @Override
     public void runOpMode() {
         robot = new Anvil(hardwareMap, UNNAMED, telemetry);
+        wtr = new WTR();
         telemetry.addData("Status", "Initialized");
+
+        wtr.initVuforia();
+        wtr.initTfod();
+        if (tfod != null) tfod.activate();
+
         runtime.reset();
         telemetry.update();
 
         waitForStart();
 
-        while (robot.sensorColor.red() < 110){
+      /*  while (robot.sensorColor.red() < 110){
             robot.moveForward(0.4);
             telemetry.addData("redSensor", robot.sensorColor.red());
             telemetry.update();
         }
         while (robot.sensorColor.red() < 110 && robot.sensorColor.blue() < 110 )
-        robot.rest();
+        robot.rest(); */
 
         while (opModeIsActive() && runtime.milliseconds() < 30000) {
             telemetry.addData("redSensor", robot.sensorColor.red());
             telemetry.update();
+            if (tfod != null) {
+                // getUpdatedRecognitions() will return null if no new information is available since
+                // the last time that call was made.
+                List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+                if (updatedRecognitions != null) {
+                    telemetry.addData("# Object Detected", updatedRecognitions.size());
+                    // step through the list of recognitions and display boundary info.
+                    int i = 0;
+                    for (Recognition recognition : updatedRecognitions) {
+                        telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
+                        telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
+                                recognition.getLeft(), recognition.getTop());
+                        telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
+                                recognition.getRight(), recognition.getBottom());
+                    }
+                    telemetry.update();
+                }
+            }
 
+        }
+        if (tfod != null) {
+            tfod.shutdown();
         }
 
 
