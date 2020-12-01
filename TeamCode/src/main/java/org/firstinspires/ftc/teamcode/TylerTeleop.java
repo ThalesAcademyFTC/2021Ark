@@ -18,27 +18,24 @@ public class TylerTeleop extends OpMode {
     @Override
     public void loop() {
         double speed = 1;
+        double speed2 = 1;
 
         if (gamepad1.left_bumper) {
-            robot.turnLeft(speed);
+            robot.turnLeft(speed2);
         } else if(gamepad1.right_bumper) {
-            robot.turnRight(speed);
-        } else if(gamepad1.dpad_up) {
-          //  f.dtr(speed);
-        } else if(gamepad1.dpad_down) {
-           // f.dbl(speed);
-        } else if(gamepad1.dpad_right) {
-
-        } else if(gamepad1.dpad_left) {
-           // f.dtl(speed);
+            robot.turnRight(speed2);
         } else if(gamepad1.a) {
             speed = 1;
+            speed2 = 1;
         } else if(gamepad1.b) {
-            speed = 0.75;
+            speed = 2;
+            speed2 = 0.25;
         } else if(gamepad1.x) {
-            speed = 0.5;
+            speed = 3;
+            speed2 = 0.5;
         } else if(gamepad1.y) {
-            speed = 0.25;
+            speed = 4;
+            speed2 = 0.75;
         }
 
         if (gamepad1.atRest()) robot.rest();
