@@ -36,7 +36,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.UNNAMED;
 
 
-@Autonomous(name="GabeAuton", group="Pushbot")
+@Autonomous(name="JAuton", group="Pushbot")
 //@Disabled
 
 public class JAuton extends LinearOpMode {

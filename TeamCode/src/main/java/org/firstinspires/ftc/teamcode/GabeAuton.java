@@ -42,6 +42,9 @@ import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.UNNAMED;
 //@Disabled
 
 public class GabeAuton extends LinearOpMode {
+    private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
+    private static final String LABEL_FIRST_ELEMENT = "Quad";
+    private static final String LABEL_SECOND_ELEMENT = "Single";
     private Anvil robot;
     private ElapsedTime runtime = new ElapsedTime();
     @Override
