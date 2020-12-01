@@ -41,12 +41,12 @@ public class TylerTeleop extends OpMode {
         if (gamepad1.atRest()) robot.rest();
         else {
             if (Math.abs(gamepad1.left_stick_x) + Math.abs(gamepad1.left_stick_y) > 1.3) {
-                robot.moveDiagonal(gamepad1.left_stick_x, gamepad1.left_stick_y, speed);
+                robot.moveDiagonal(gamepad1.left_stick_x, -gamepad1.left_stick_y, speed);
             } else if (Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)) {
                 robot.holoMoveLeft(gamepad1.left_stick_x / speed);
             } else if (Math.abs(gamepad1.right_stick_x) > Math.abs(gamepad1.right_stick_y)) {
-                robot.turnLeft(gamepad1.right_stick_x / speed);
-            } else robot.moveForward(gamepad1.left_stick_y/speed);
+                robot.turnRight(gamepad1.right_stick_x / speed);
+            } else robot.moveBackward(gamepad1.left_stick_y/speed);
         }
     }
 }
