@@ -34,6 +34,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
+import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
+
 import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.MECHANUM;
 import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.UNNAMED;
 
@@ -47,6 +50,11 @@ public class GabeAuton extends LinearOpMode {
     private static final String LABEL_SECOND_ELEMENT = "Single";
     private Anvil robot;
     private ElapsedTime runtime = new ElapsedTime();
+    private static final String VUFORIA_KEY =
+            "AXeANof/////AAABmaDs6FJl000DqMZb1GO2za8OTVHuQt7JKLF1cPYd4n6ToTb5uU19/BWc39F/bsNlzfVOalKd3tJdD3X42NYGDc/4PIfKaeWQG2Km+Ge8ueZcxkflgpLg/jjvxYAcJ7me0MM+j/5pJX1WQQLQCjrb2eXn8oCARcCsQeVq4VA0QtJOBvaE6Bvz3T8LS8c1CiJlb64sC5cS55824oq9RjtsYeWhbfh1uOV+hVg74AdwCu3VZC8CFJQNRKNL0ZPALv6PZWclrppxVESZF+aSYX5SIZln6C1iwvQskiJV2T4Xy45OP5PmO0vGW8P2r86+yG6y046AOeECsrLtLqonxWIpYXjnHvWpNgbarU/vPQgQET6i";
+    private VuforiaLocalizer vuforia;
+    private TFObjectDetector tfod;
+
     @Override
     public void runOpMode() {
         robot = new Anvil(hardwareMap, UNNAMED, telemetry);
