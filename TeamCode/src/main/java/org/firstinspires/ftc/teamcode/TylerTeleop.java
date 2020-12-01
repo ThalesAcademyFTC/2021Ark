@@ -20,15 +20,15 @@ public class TylerTeleop extends OpMode {
         double speed = 1;
 
         if (gamepad1.left_bumper) {
-            //f.tl(speed);
+            robot.turnLeft(speed);
         } else if(gamepad1.right_bumper) {
-           // f.tr(speed);
+            robot.turnRight(speed);
         } else if(gamepad1.dpad_up) {
           //  f.dtr(speed);
         } else if(gamepad1.dpad_down) {
            // f.dbl(speed);
         } else if(gamepad1.dpad_right) {
-           // f.dbr(speed);
+
         } else if(gamepad1.dpad_left) {
            // f.dtl(speed);
         } else if(gamepad1.a) {
@@ -37,8 +37,7 @@ public class TylerTeleop extends OpMode {
             speed = 0.75;
         } else if(gamepad1.x) {
             speed = 0.5;
-        }
-        else if(gamepad1.y) {
+        } else if(gamepad1.y) {
             speed = 0.25;
         }
 
