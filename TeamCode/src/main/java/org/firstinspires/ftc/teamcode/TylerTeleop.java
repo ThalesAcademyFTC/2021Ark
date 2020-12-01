@@ -41,8 +41,7 @@ public class TylerTeleop extends OpMode {
         }
         else if(gamepad1.y) {
             speed = 0.25;
-        }
-        else {
+        } else {
             if (gamepad1.right_stick_x > 0.5) {
                 f.mr(speed);
             } else if (gamepad1.right_stick_x < -0.5) {
