@@ -46,10 +46,10 @@ import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.MECHANUM;
 import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.UNNAMED;
 
 
-@Autonomous(name="GabeAuton", group="Pushbot")
+@Autonomous(name="RedSideAuton", group="Pushbot")
 //@Disabled
 
-public class GabeAuton extends LinearOpMode {
+public class RedSideAuton extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Quad";
     private static final String LABEL_SECOND_ELEMENT = "Single";
@@ -71,7 +71,7 @@ public class GabeAuton extends LinearOpMode {
 
         if (tfod != null) {
             tfod.activate();
-            //tfod.setZoom(2.5, 1.78); Read original code for more information.
+            tfod.setZoom(4, 1.78);
         }
 
         runtime.reset();
@@ -102,14 +102,15 @@ public class GabeAuton extends LinearOpMode {
         }
         if (lastRecognized == "Quad"){
             //Position C
-            telemetry.addData("Target", "C");
+
         } else if (lastRecognized == "Single"){
             //Position B
-            telemetry.addData("Target", "B");
+
 
         } else {
             //Position A
-            telemetry.addData("Target", "A");
+
+
         }
       /*  while (robot.sensorColor.red() < 110){
             robot.moveForward(0.4);
