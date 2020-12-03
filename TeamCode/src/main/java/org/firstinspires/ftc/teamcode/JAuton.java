@@ -50,7 +50,11 @@ public class JAuton extends LinearOpMode {
         telemetry.update();
 
         waitForStart();
-        
+
+        robot.moveForward(.3);
+        while (robot.sensorColor.blue() < 100) {
+            continue;
+        }
 
 
         while (opModeIsActive() && runtime.milliseconds() < 30000) {
