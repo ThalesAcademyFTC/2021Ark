@@ -18,7 +18,7 @@ public class TylerTeleop extends OpMode {
     double speed2 = 1;
     @Override
     public void loop() {
-
+        //comment to fix everything.
         if (gamepad1.left_bumper) {
             robot.turnLeft(speed2);
         } else if(gamepad1.right_bumper) {
