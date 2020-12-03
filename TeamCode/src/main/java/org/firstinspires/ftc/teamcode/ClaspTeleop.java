@@ -14,13 +14,11 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 public class ClaspTeleop extends OpMode {
 
     private Anvil robot;
-    private F f;
 
 
     @Override
     public void init() {
         //robot = new Anvil(hardwareMap, Anvil.Drivetrain.MECHANUM, telemetry);
-        //f = new F(hardwareMap, Anvil.Drivetrain.UNNAMED, telemetry);
     }
 
     @Override
@@ -30,7 +28,6 @@ public class ClaspTeleop extends OpMode {
             if (Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)) {
                 robot.turnRight(gamepad1.left_stick_x);
             } else robot.moveBackward(gamepad1.left_stick_y);
-
         }
     }
 }

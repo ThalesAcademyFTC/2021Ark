@@ -50,7 +50,7 @@ public class JAuton extends LinearOpMode {
         telemetry.update();
 
         waitForStart();
-
+        
 
 
         while (opModeIsActive() && runtime.milliseconds() < 30000) {

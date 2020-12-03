@@ -25,6 +25,8 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+/.../
+
  */
 
 package org.firstinspires.ftc.teamcode;
@@ -45,6 +47,7 @@ import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.UNNAMED;
 public class AydenAuton extends LinearOpMode {
     private Anvil robot;
     private ElapsedTime runtime = new ElapsedTime();
+
     @Override
     public void runOpMode() {
         robot = new Anvil(hardwareMap, UNNAMED, telemetry);
@@ -56,14 +59,25 @@ public class AydenAuton extends LinearOpMode {
 
         robot.moveForward(.3);
         double red = robot.sensorColor.red();
+        while (robot.sensorColor.red() < 100) {
+            continue;
+        }
+        sleep(400);
+        while (robot.sensorColor.red() < 100) {
+            continue;
+        }
+        sleep(400);
         while (robot.sensorColor.red() < 100){
             continue;
         }
+        sleep(400);
         robot.moveBackward(.3);
         while (robot.sensorColor.red() < 100 || robot.sensorColor.blue() < 200 || robot.sensorColor.green() < 200){
-            continue;
+
         }
-        robot.rest();
+        if (robot.sensorColor.red() > 100 || robot.sensorColor.blue() > 200 || robot.sensorColor.green() > 200) {
+            robot.rest();
+        }
 
 
 
