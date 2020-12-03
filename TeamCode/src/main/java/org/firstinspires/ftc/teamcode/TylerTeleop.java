@@ -16,25 +16,26 @@ public class TylerTeleop extends OpMode {
     }
     double speed = 1;
     double speed2 = 1;
+    boolean bool = true;
     @Override
     public void loop() {
-        //comment to fix everything.
+        telemetry.addData("Speed", 1/speed);
+        telemetry.update();
         if (gamepad1.left_bumper) {
             robot.turnLeft(speed2);
         } else if(gamepad1.right_bumper) {
             robot.turnRight(speed2);
         } else if(gamepad1.a) {
+            bool = !bool;
             speed = 1;
             speed2 = 1;
-        } else if(gamepad1.b) {
+        }
+        if (bool) {
+            speed = 1;
+            speed2 = 1;
+        } else if (!bool) {
             speed = 2;
-            speed2 = 0.25;
-        } else if(gamepad1.x) {
-            speed = 3;
             speed2 = 0.5;
-        } else if(gamepad1.y) {
-            speed = 4;
-            speed2 = 0.75;
         }
 
         if (gamepad1.atRest()) robot.rest();
