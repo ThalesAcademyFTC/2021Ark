@@ -23,7 +23,10 @@ public class TrainingTeleop extends OpMode {
     @Override
 
     public void loop() {
-        telemetry.addData("colorSensor", robot.sensorColor);
+        telemetry.addData("motor1", robot.motor1.getCurrentPosition());
+        telemetry.addData("motor2", robot.motor2.getCurrentPosition());
+        telemetry.addData("motor3", robot.motor3.getCurrentPosition());
+        telemetry.addData("motor4", robot.motor4.getCurrentPosition());
         telemetry.update();
         if (gamepad1.atRest() && gamepad2.atRest()) robot.rest();
         else if (gamepad1.x){

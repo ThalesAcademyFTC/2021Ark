@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  * Clasp is a basic, bare-bones teleop designed to run on top of Anvil.
  */
 
-@TeleOp(name="ClaspTeleop", group="Pushbot")
+@TeleOp(name="JacksonTeleop", group="Pushbot")
 @Disabled
 public class JackyBoyTeleop extends OpMode {
 

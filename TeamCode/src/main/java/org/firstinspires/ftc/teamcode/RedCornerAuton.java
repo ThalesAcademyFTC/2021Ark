@@ -46,10 +46,10 @@ import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.MECHANUM;
 import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.UNNAMED;
 
 
-@Autonomous(name="RedSideAuton", group="Pushbot")
+@Autonomous(name="RedCornerAuton", group="Pushbot")
 //@Disabled
 
-public class RedSideAuton extends LinearOpMode {
+public class RedCornerAuton extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Quad";
     private static final String LABEL_SECOND_ELEMENT = "Single";
