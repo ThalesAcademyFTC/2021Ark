@@ -120,17 +120,23 @@ public class RedCornerAuton extends LinearOpMode {
             while (robot.sensorColor.red() > 100 || robot.sensorColor.blue() > 200 || robot.sensorColor.green() > 200) continue;
             while (robot.sensorColor.red() < 100) continue;
 
-            robot.moveRight(0.5);
+            robot.moveRight(0.3);
 
             while (robot.sensorColor.red() < 100) continue;
-            robot.moveLeft(800);
+            robot.moveLeftFT(800);
 
             robot.moveForward(0.5);
             while (robot.sensorColor.red() < 100 || robot.sensorColor.blue() < 200 || robot.sensorColor.green() < 200) continue;
             robot.rest();
         } else {
             //Position A
+            robot.moveRight(0.3);
+            while (robot.sensorColor.red() < 100 || robot.sensorColor.blue() < 200 || robot.sensorColor.green() < 200) continue;
+            robot.moveLeftFT(800);
 
+            robot.moveRight(0.3);
+            while (robot.sensorColor.red() < 100 || robot.sensorColor.blue() < 200 || robot.sensorColor.green() < 200) continue;
+            robot.rest();
         }
 
 
