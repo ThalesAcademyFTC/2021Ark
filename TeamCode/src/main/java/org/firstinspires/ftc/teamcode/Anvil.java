@@ -45,6 +45,9 @@ public class Anvil {
 
     public boolean hs = true;
 
+    public void moveForwardFT(int i) {
+    }
+
     public enum Drivetrain {
         HOLONOMIC,
         MECHANUM,
