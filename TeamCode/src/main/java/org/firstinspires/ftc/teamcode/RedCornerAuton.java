@@ -78,10 +78,12 @@ public class RedCornerAuton extends LinearOpMode {
         telemetry.update();
 
         waitForStart();
+        robot.moveForwardFT(1000, 0.5); //Line robot up with disks
+        robot.turnLeftFT(700, 0.5); //Turn towards Disks, depends on where camera is located
+
         // Checks for disks
         if (opModeIsActive()) {
             while (opModeIsActive() && runtime.milliseconds() < 7000) {
-                // telemetry.addData("redSensor", robot.sensorColor.red());
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.
