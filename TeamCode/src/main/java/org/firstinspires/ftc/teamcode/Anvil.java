@@ -39,7 +39,7 @@ public class Anvil {
 
     public Telemetry telemetry;
 
-    public DcMotor[] forward, right, left, special, unique, collect;
+    public DcMotor[] forward, front, right, left, special, unique, collect;
 
     private double ticksPerInch = 15.26;
 
@@ -94,8 +94,9 @@ public class Anvil {
                 motor1.setDirection(DcMotor.Direction.REVERSE);
                 motor2.setDirection(DcMotor.Direction.FORWARD);
                 motor3.setDirection(DcMotor.Direction.FORWARD);
-                motor4.setDirection(DcMotor.Direction.REVERSE);
+                motor4.setDirection(DcMotor.Direction.FORWARD);
                 forward = new DcMotor[]{motor1, motor2, motor3, motor4};
+                front = new DcMotor[]{motor1, motor2};
                 right = new DcMotor[]{motor2, motor4};
                 left = new DcMotor[]{motor1, motor3};
                 special = new DcMotor[]{motor1, motor4};
@@ -505,22 +506,22 @@ public class Anvil {
             return 1000;
         }
     }
-    public void turnRightFT(int ticks) {
-        //Blocks until the robot has gotten to the desired location.
+    public boolean ntarget(int ticks, DcMotor x){
+        if (x.getCurrentPosition() > ticks + 25 || x.getCurrentPosition() < ticks - 25) return true;
+        else return false;
+    }
+    public void turnRightFT(int ticks, double speed) {
         this.rest();
-        for (DcMotor x : right) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(-ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        for (DcMotor x : left) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
+        front[0].setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        front[0].setTargetPosition(ticks);
+        front[0].setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        this.moveForward(0.5);
-        while ((right[0].getCurrentPosition() < ticks - 25 || right[0].getCurrentPosition() > ticks + 25) && (left[0].getCurrentPosition() < ticks - 25 || left[0].getCurrentPosition() > ticks + 25)) {
+        front[1].setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        front[1].setTargetPosition(-ticks);
+        front[1].setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        this.turnRight(speed);
+        while (ntarget(ticks, forward[0]) || ntarget(-ticks, forward[1])) {
             continue;
         }
         for (DcMotor x : forward) {
@@ -528,22 +529,18 @@ public class Anvil {
             x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
     }
-    public void turnLeftFT(int ticks) {
-        //Blocks until the robot has gotten to the desired location.
+    public void turnLeftFT(int ticks, double speed) {
         this.rest();
-        for (DcMotor x : right) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        for (DcMotor x : left) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(-ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
+        front[1].setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        front[1].setTargetPosition(ticks);
+        front[1].setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        this.moveForward(0.5);
-        while ((right[0].getCurrentPosition() < ticks - 25 || right[0].getCurrentPosition() > ticks + 25) && (left[0].getCurrentPosition() < ticks - 25 || left[0].getCurrentPosition() > ticks + 25)) {
+        front[0].setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        front[0].setTargetPosition(-ticks);
+        front[0].setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        this.turnLeft(speed);
+        while (ntarget(-ticks, forward[0]) || ntarget(ticks, forward[1])) {
             continue;
         }
         for (DcMotor x : forward) {
@@ -554,18 +551,15 @@ public class Anvil {
     public void moveRightFT(int ticks) {
         //Blocks until the robot has gotten to the desired location.
         this.rest();
-        for (DcMotor x : unique) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        for (DcMotor x : special) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(-ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        this.moveForward(0.5);
-        while (unique[0].isBusy() && special[0].isBusy()) {
+            front[1].setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            front[1].setTargetPosition(-ticks);
+            front[1].setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            front[0].setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            front[0].setTargetPosition(ticks);
+            front[0].setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        this.moveRight(0.3);
+        while (ntarget(ticks, front[0]) || ntarget(-ticks, front[1])) {
             continue;
         }
         for (DcMotor x : forward) {
@@ -576,18 +570,15 @@ public class Anvil {
     public void moveLeftFT(int ticks) {
         //Blocks until the robot has gotten to the desired location.
         this.rest();
-        for (DcMotor x : unique) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(-ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        for (DcMotor x : special) {
-            x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            x.setTargetPosition(ticks);
-            x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-        this.moveForward(0.5);
-        while (unique[0].isBusy() && special[0].isBusy()) {
+        front[0].setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        front[0].setTargetPosition(-ticks);
+        front[0].setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        front[1].setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        front[1].setTargetPosition(ticks);
+        front[1].setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        this.moveLeft(0.3);
+        while (ntarget(-ticks, front[0]) || ntarget(ticks, front[1])) {
             continue;
         }
         for (DcMotor x : forward) {
@@ -595,16 +586,16 @@ public class Anvil {
             x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
     }
-    public void moveForwardFT(int ticks) {
+    public void moveForwardFT(int ticks, double speed) {
         //Blocks until the robot has gotten to the desired location.
         this.rest();
-        for (DcMotor x : forward) {
+        for (DcMotor x : front) {
             x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             x.setTargetPosition(ticks);
             x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
-        this.moveForward(0.3);
-        while (forward[0].isBusy()) {
+        this.moveForward(speed);
+        while (ntarget(ticks, front[0]) || ntarget(ticks, front[1])) {
             continue;
         }
         for (DcMotor x : forward) {
@@ -612,16 +603,16 @@ public class Anvil {
             x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
     }
-    public void moveBackwardFT(int ticks) {
+    public void moveBackwardFT(int ticks, double speed) {
         //Blocks until the robot has gotten to the desired location.
         this.rest();
-        for (DcMotor x : forward) {
+        for (DcMotor x : front) {
             x.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             x.setTargetPosition(-ticks);
             x.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
-        this.moveForward(0.5);
-        while (forward[0].isBusy()) {
+        this.moveBackward(speed);
+        while (ntarget(-ticks, front[0]) || ntarget(-ticks, front[1])) {
             continue;
         }
         for (DcMotor x : forward) {

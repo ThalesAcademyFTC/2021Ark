@@ -46,10 +46,10 @@ import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.MECHANUM;
 import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.UNNAMED;
 
 
-@Autonomous(name="GabeAuton", group="Pushbot")
+@Autonomous(name="RedCornerAuton", group="Pushbot")
 //@Disabled
 
-public class GabeAuton extends LinearOpMode {
+public class RedCornerAuton extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Quad";
     private static final String LABEL_SECOND_ELEMENT = "Single";
@@ -71,17 +71,19 @@ public class GabeAuton extends LinearOpMode {
 
         if (tfod != null) {
             tfod.activate();
-            //tfod.setZoom(2.5, 1.78); Read original code for more information.
+            tfod.setZoom(2.5, 1.78);
         }
 
         runtime.reset();
         telemetry.update();
 
         waitForStart();
+        robot.moveForwardFT(1000, 0.5); //Line robot up with disks
+        robot.turnLeftFT(700, 0.5); //Turn towards Disks, depends on where camera is located
+
         // Checks for disks
         if (opModeIsActive()) {
             while (opModeIsActive() && runtime.milliseconds() < 7000) {
-                // telemetry.addData("redSensor", robot.sensorColor.red());
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.
@@ -102,22 +104,16 @@ public class GabeAuton extends LinearOpMode {
         }
         if (lastRecognized == "Quad"){
             //Position C
-            telemetry.addData("Target", "C");
+
         } else if (lastRecognized == "Single"){
             //Position B
-            telemetry.addData("Target", "B");
+            //Turn to position arm facing the blue side of field
 
         } else {
             //Position A
-            telemetry.addData("Target", "A");
+
         }
-      /*  while (robot.sensorColor.red() < 110){
-            robot.moveForward(0.4);
-            telemetry.addData("redSensor", robot.sensorColor.red());
-            telemetry.update();
-        }
-        while (robot.sensorColor.red() < 110 && robot.sensorColor.blue() < 110 )
-        robot.rest(); */
+
 
         while (opModeIsActive() && runtime.milliseconds() < 30000) {
             telemetry.addData("lastRecognized", lastRecognized);
