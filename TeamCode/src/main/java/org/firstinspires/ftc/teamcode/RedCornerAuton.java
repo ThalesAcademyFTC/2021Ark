@@ -71,7 +71,7 @@ public class RedCornerAuton extends LinearOpMode {
 
         if (tfod != null) {
             tfod.activate();
-            tfod.setZoom(4, 1.78);
+            tfod.setZoom(2.5, 1.78);
         }
 
         runtime.reset();
