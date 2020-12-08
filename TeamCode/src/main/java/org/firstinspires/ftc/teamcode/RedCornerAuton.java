@@ -104,7 +104,6 @@ public class RedCornerAuton extends LinearOpMode {
         }
         if (lastRecognized == "Quad"){
             //Position C
-            //Turn to position arm towards goals
 
         } else if (lastRecognized == "Single"){
             //Position B
@@ -112,7 +111,6 @@ public class RedCornerAuton extends LinearOpMode {
 
         } else {
             //Position A
-            //turn to position arm towards goals
 
         }
 
