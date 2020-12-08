@@ -52,9 +52,10 @@ public class JAuton extends LinearOpMode {
         waitForStart();
 
         robot.moveForward(.3);
-        while (robot.sensorColor.blue() < 100) {
+        while (robot.sensorColor.red() < 100) {
             continue;
         }
+        robot.moveBackwardFT(1000, 0.5);
 
 
         while (opModeIsActive() && runtime.milliseconds() < 30000) {
