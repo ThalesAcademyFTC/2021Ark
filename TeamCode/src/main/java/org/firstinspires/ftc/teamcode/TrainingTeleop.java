@@ -29,9 +29,9 @@ public class TrainingTeleop extends OpMode {
         else if (gamepad1.x){
             robot.armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             robot.armMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        } else if (gamepad1.dpad_up){
+        } else if (gamepad1.b){
             robot.armMotor.setPower(1);
-        } else if (gamepad1.dpad_down){
+        } else if (gamepad1.a){
             robot.armMotor.setPower(-1);
         }
         else {

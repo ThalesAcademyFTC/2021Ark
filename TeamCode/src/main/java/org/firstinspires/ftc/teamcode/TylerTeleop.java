@@ -37,12 +37,12 @@ public class TylerTeleop extends OpMode {
         } else if (!bool) {
             speed = 2;
             speed2 = 0.5;
-        } else if (gamepad1.dpad_up) {
+        }
+        if (gamepad1.dpad_up) {
             robot.armMotor.setPower(1);
         } else if (gamepad1.dpad_down) {
             robot.armMotor.setPower(-1);
-        }
-
+        } else robot.armMotor.setPower(0);
         if (gamepad1.atRest()) robot.rest();
         else {
             if (Math.abs(gamepad1.left_stick_x) + Math.abs(gamepad1.left_stick_y) > 1.3) {
