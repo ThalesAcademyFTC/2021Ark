@@ -45,6 +45,9 @@ public class Anvil {
 
     public boolean hs = true;
 
+    public void moveForwardFT(int i) {
+    }
+
     public enum Drivetrain {
         HOLONOMIC,
         MECHANUM,
@@ -89,6 +92,7 @@ public class Anvil {
                 motor2 = hwMap.dcMotor.get("motor2");
                 motor3 = hwMap.dcMotor.get("motor3");
                 motor4 = hwMap.dcMotor.get("motor4");
+                armMotor = hwMap.dcMotor.get("armMotor");
                 sensorColor = hwMap.get(ColorSensor.class, "colorDistanceSensor");
                 sensorDistance = hwMap.get(DistanceSensor.class, "colorDistanceSensor");
                 motor1.setDirection(DcMotor.Direction.REVERSE);
