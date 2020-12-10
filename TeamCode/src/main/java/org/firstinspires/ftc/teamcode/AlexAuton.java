@@ -133,6 +133,7 @@ public class AlexAuton extends LinearOpMode {
             continue;
         }
         while (robot.sensorColor.red() > 30)
+            robot.moveRight(0.3);
 
 //================================================================================================\\
 
