@@ -111,16 +111,29 @@ public class AlexAuton extends LinearOpMode {
  */
 
 //===============================MORE COLOR SENSOR CODE===========================================\\
-
-        robot.moveForward(0.4);
-        while (robot.sensorColor.red() < 200 && robot.sensorColor.green() < 200 && robot.sensorColor.blue() < 200)
+        robot.moveRight(0.3);
+        while (robot.sensorColor.red() < 100) {
             continue;
+        }
+        while (robot.sensorColor.red() >= 100) continue;
 
-
-
-        while (robot.sensorColor.red() > 200 && robot.sensorColor.green() > 200 && robot.sensorColor.blue() > 200)
+        while (robot.sensorColor.red() < 100 || robot.sensorColor.blue() < 200 || robot.sensorColor.green() < 200) {
             continue;
-        robot.rest();
+        }
+        while (robot.sensorColor.red() > 100 || robot.sensorColor.blue() > 200 || robot.sensorColor.green() > 200) {
+            continue;
+        }
+        while (robot.sensorColor.red() < 100) {
+            continue;
+        }
+//boogie bomb (
+
+        robot.moveForward(0.3);
+        while (robot.sensorColor.red() < 50){
+            continue;
+        }
+        while (robot.sensorColor.red() > 30)
+
 //================================================================================================\\
 
         while (opModeIsActive() && runtime.milliseconds() < 30000) {
