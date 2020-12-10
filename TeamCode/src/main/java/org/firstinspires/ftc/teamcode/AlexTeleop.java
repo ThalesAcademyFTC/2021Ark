@@ -30,7 +30,9 @@ public class AlexTeleop extends OpMode {
         int none = 0;
 
 //================================================================================================\\
-
+        if (gamepad1.atRest()) {
+            robot.rest();
+        }
         if (gamepad1.right_stick_x > half) {
             robot.turnRight(speed);
         }
