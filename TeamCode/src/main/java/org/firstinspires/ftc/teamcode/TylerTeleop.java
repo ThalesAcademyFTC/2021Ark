@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.Gamepad;
 
 @TeleOp(name="TylerTeleop", group="Pushbot")
 //@Disabled
@@ -36,6 +37,10 @@ public class TylerTeleop extends OpMode {
         } else if (!bool) {
             speed = 2;
             speed2 = 0.5;
+        } else if (gamepad1.dpad_up) {
+            robot.armMotor.setPower(1);
+        } else if (gamepad1.dpad_down) {
+            robot.armMotor.setPower(-1);
         }
 
         if (gamepad1.atRest()) robot.rest();
