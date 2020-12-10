@@ -78,8 +78,8 @@ public class RedCornerAuton extends LinearOpMode {
         telemetry.update();
 
         waitForStart();
-        robot.moveForwardFT(1000, 0.5); //Line robot up with disks
-        robot.turnLeftFT(700, 0.5); //Turn towards Disks, depends on where camera is located
+        robot.moveForwardFT(2200, 0.5); //Line robot up with disks
+        robot.turnLeftFT(1350, 0.5); //Turn towards Disks, depends on where camera is located
 
         // Checks for disks
         if (opModeIsActive()) {
