@@ -79,8 +79,7 @@ public class GabAuton extends LinearOpMode {
         while (robot.sensorColor.red() < 100 || robot.sensorColor.blue() < 200 || robot.sensorColor.green() < 200) {
 
         }
-        robot.rest();
-
+    robot.rest();
         while (opModeIsActive() && runtime.milliseconds() < 25000) {
 
 
