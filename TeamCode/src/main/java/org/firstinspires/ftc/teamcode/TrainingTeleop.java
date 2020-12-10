@@ -23,22 +23,18 @@ public class TrainingTeleop extends OpMode {
     @Override
 
     public void loop() {
-        telemetry.addData("motor1", robot.motor1.getCurrentPosition());
-        telemetry.addData("motor2", robot.motor2.getCurrentPosition());
-        telemetry.addData("motor3", robot.motor3.getCurrentPosition());
-        telemetry.addData("motor4", robot.motor4.getCurrentPosition());
+        telemetry.addData("armMotor1", robot.armMotor.getCurrentPosition());
         telemetry.update();
         if (gamepad1.atRest() && gamepad2.atRest()) robot.rest();
         else if (gamepad1.x){
-            robot.motor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            robot.motor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            robot.motor3.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            robot.motor4.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            robot.motor1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            robot.motor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            robot.motor3.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            robot.motor4.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        } else {
+            robot.armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            robot.armMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        } else if (gamepad1.dpad_up){
+            robot.armMotor.setPower(1);
+        } else if (gamepad1.dpad_down){
+            robot.armMotor.setPower(-1);
+        }
+        else {
             if (Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)) {
                 robot.turnRight(gamepad1.left_stick_x);
             } else robot.moveBackward(gamepad1.left_stick_y);
