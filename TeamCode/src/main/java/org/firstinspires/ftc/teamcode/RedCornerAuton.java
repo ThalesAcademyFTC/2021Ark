@@ -78,8 +78,8 @@ public class RedCornerAuton extends LinearOpMode {
         telemetry.update();
 
         waitForStart();
-        robot.moveForwardFT(1000, 0.5); //Line robot up with disks
-        robot.turnLeftFT(700, 0.5); //Turn towards Disks, depends on where camera is located
+        robot.moveForwardFT(2200, 0.5); //Line robot up with disks
+        robot.turnLeftFT(1350, 0.5); //Turn towards Disks, depends on where camera is located
 
         // Checks for disks
         if (opModeIsActive()) {
@@ -104,6 +104,19 @@ public class RedCornerAuton extends LinearOpMode {
         }
         if (lastRecognized == "Quad"){
             //Position C
+            robot.moveForward(.3);
+            for (int i=0; i<3; i++) {
+                while (robot.sensorColor.red() <= 100) continue;
+                while (robot.sensorColor.red() > 100) continue;
+            }
+
+            while (robot.sensorColor.red() <= 100) continue;
+
+            robot.moveBackward(.3);
+
+            while (robot.sensorColor.red() < 100 || robot.sensorColor.blue() < 200 || robot.sensorColor.green() < 200) continue;
+
+            if (robot.sensorColor.red() > 100 || robot.sensorColor.blue() > 200 || robot.sensorColor.green() > 200) robot.rest();
 
         } else if (lastRecognized == "Single"){
             //Position B
