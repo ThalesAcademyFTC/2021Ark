@@ -112,14 +112,24 @@ public class AlexAuton extends LinearOpMode {
 
 //===============================MORE COLOR SENSOR CODE===========================================\\
         robot.moveForward(0.3);
-        while (robot.sensorColor.blue() > 100) {
+        while (robot.sensorColor.blue() <= 100) {
             continue;
         }
+        while (robot.sensorColor.blue() > 100)
+            continue;
         while (robot.sensorColor.blue() <= 100)
             continue;
         while (robot.sensorColor.blue() > 100)
             continue;
         while (robot.sensorColor.blue() < 100)
+            robot.rest();
+
+        robot.moveBackward(0.3);
+        while (robot.sensorColor.blue() < 100)
+            continue;
+        while (robot.sensorColor.blue() > 100)
+            continue;
+        while (robot.sensorColor.red() < 100 == robot.sensorColor.blue() > 100 == robot.sensorColor.green() > 100)
             robot.rest();
 //================================================================================================\\
 
