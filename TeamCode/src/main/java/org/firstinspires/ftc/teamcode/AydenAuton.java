@@ -88,21 +88,6 @@ public class AydenAuton extends LinearOpMode {
             robot.rest();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         while (opModeIsActive() && runtime.milliseconds() < 25000) {
 
 
