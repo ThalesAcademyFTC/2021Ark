@@ -56,44 +56,98 @@ public class AydenAuton extends LinearOpMode {
         telemetry.update();
         waitForStart();
 
+        //Position C RIGHT
+        /*robot.moveForward(.3);
 
-        robot.moveForward(.3);
-
-        while (robot.sensorColor.red() <= 100){
+        while (robot.sensorColor.blue() <= 100){
             continue;
         }
-        while (robot.sensorColor.red() > 100) continue;
+        while (robot.sensorColor.blue() > 100) continue;
 
-        while (robot.sensorColor.red() <= 100) {
+        while (robot.sensorColor.blue() <= 100) {
             continue;
         }
 
-        while (robot.sensorColor.red() > 100) continue;
+        while (robot.sensorColor.blue() > 100) continue;
 
-        while (robot.sensorColor.red() <= 100){
-            continue;
-
-        }
-        while (robot.sensorColor.red() > 100) continue;
-
-        while (robot.sensorColor.red() <= 100){
+        while (robot.sensorColor.blue() <= 100){
             continue;
 
         }
+        robot.moveForwardFT(400, 0.3);
+        robot.moveLeft(.3);
+
+        while (robot.sensorColor.blue() <= 100){
+            continue;
+        }
+
+        while (robot.sensorColor.blue() > 100) continue;
+
         robot.moveBackward(.3);
-        while (robot.sensorColor.red() < 100 || robot.sensorColor.blue() < 200 || robot.sensorColor.green() < 200){
+
+        while (robot.sensorColor.blue() <= 100){
+            continue;
 
         }
-        if (robot.sensorColor.red() > 100 || robot.sensorColor.blue() > 200 || robot.sensorColor.green() > 200) {
+        while (robot.sensorColor.blue() > 100) continue;
+
+        while (robot.sensorColor.blue() <= 100){
+            continue;
+        }
+
+        while (robot.sensorColor.blue() <200 || robot.sensorColor.blue() < 200 || robot.sensorColor.green() < 200){
+
+        }
+        if (robot.sensorColor.blue() > 100 || robot.sensorColor.blue() > 200 || robot.sensorColor.green() > 200) {
             robot.rest();
         }
+    }
+}
 
-        while (opModeIsActive() && runtime.milliseconds() < 25000) {
+        /*robot.moveForward(.3);
 
+        while (robot.sensorColor.blue() <= 100){
+            continue;
+        }
+        while (robot.sensorColor.blue() > 100) continue;
 
-
+        while (robot.sensorColor.blue() <= 100) {
+            continue;
         }
 
+        while (robot.sensorColor.blue() > 100) continue;
 
+        while (robot.sensorColor.blue() <= 100){
+            continue;
+        }
+        robot.moveBackward(.3);
+        while (robot.sensorColor.blue() < 100)
+
+        if (robot.sensorColor.blue() < 100){
+            robot.rest();
+        }
+*/
+        /*robot.moveForward(.3);
+        while (robot.sensorColor.blue() < 100)
+            robot.moveForwardFT(300, .3);
+        robot.moveLeft(.3);
+        while (robot.sensorColor.blue() > 100) continue;
+
+        while (robot.sensorColor.blue() < 100)
+            robot.moveBackward(.3);
+
+        while (robot.sensorColor.blue() < 200 || robot.sensorColor.blue() < 200 || robot.sensorColor.green() < 200) {
+
+        }
+        if (robot.sensorColor.blue() > 100 || robot.sensorColor.blue() > 200 || robot.sensorColor.green() > 200) {
+            robot.rest();
+
+
+            while (opModeIsActive() && runtime.milliseconds() < 25000) ;
+
+        }
+    }
+}
+         */
     }
 }
