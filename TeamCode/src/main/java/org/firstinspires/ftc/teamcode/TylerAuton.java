@@ -132,8 +132,9 @@ public class TylerAuton extends LinearOpMode {
         while (robot.sensorColor.red() > 100) continue; */
 
         //square a left start position
+        robot.moveForward(0.3);
         while (robot.sensorColor.blue() < 100       ) {
-            robot.moveForward(0.3);
+            continue;
         }
         robot.moveLeftFT(500);
         robot.moveForwardFT(500);
