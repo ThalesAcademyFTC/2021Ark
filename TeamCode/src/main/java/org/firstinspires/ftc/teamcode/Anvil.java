@@ -93,7 +93,7 @@ public class Anvil {
                 motor3 = hwMap.dcMotor.get("motor3");
                 motor4 = hwMap.dcMotor.get("motor4");
                 armMotor = hwMap.dcMotor.get("armMotor");
-                armServo = hwMap.servo.get("servoMotor");
+                armServo = hwMap.servo.get("armServo");
                 sensorColor = hwMap.get(ColorSensor.class, "colorDistanceSensor");
                 sensorDistance = hwMap.get(DistanceSensor.class, "colorDistanceSensor");
                 motor1.setDirection(DcMotor.Direction.REVERSE);
@@ -625,10 +625,16 @@ public class Anvil {
             x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
     }
-    public void armMotorUp(int speed) {
-        armMotor.setPower(speed);
+    public void armMotorUp(){
+        armMotor.setPower(1);
     }
-    public void armMoterDown(int speed) {
-        armMotor.setPower(-speed);
+    public void armMotorDown(){
+        armMotor.setPower(-1);
+    }
+    public void liftClaw(){
+        armServo.setPosition(0.1);
+    }
+    public void lowerClaw(){
+        armServo.setPosition(0.75);
     }
 }

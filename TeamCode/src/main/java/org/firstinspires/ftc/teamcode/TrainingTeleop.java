@@ -23,7 +23,7 @@ public class TrainingTeleop extends OpMode {
     @Override
 
     public void loop() {
-        telemetry.addData("armMotor1", robot.armMotor.getCurrentPosition());
+        telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
         telemetry.update();
         if (gamepad1.atRest() && gamepad2.atRest()) robot.rest();
         else if (gamepad1.x){
@@ -40,5 +40,24 @@ public class TrainingTeleop extends OpMode {
             } else robot.moveBackward(gamepad1.left_stick_y);
         }
 
+        if (gamepad1.dpad_up){
+            robot.armServo.setPosition(0);
+        }
+        else if (gamepad1.dpad_down){
+            robot.armServo.setPosition(1);
+        }
+        else if (gamepad1.dpad_right){
+            robot.armServo.setPosition(0.25);
+        } else if (gamepad1.dpad_left){
+            robot.armServo.setPosition(0.75);
+        }
+
+        if (gamepad1.right_bumper){
+            robot.armMotorUp();
+        } else if (gamepad1.left_bumper){
+            robot.armMotor.setPower(-1);
+        } else {
+            robot.armMotor.setPower(0);
+        }
     }
 }
