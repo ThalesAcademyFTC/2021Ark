@@ -28,7 +28,7 @@ public class Anvil {
     ColorSensor sensorColor;
     DistanceSensor sensorDistance;
     public CRServo crservo1;
-    public Servo servo1, rservo1, rservo2, skyServo;
+    public Servo servo1, rservo1, rservo2, skyServo, armServo;
     public DcMotor clawMotor, armMotor;
     public OpenGLMatrix lastLocation = null;
     int[] positions = {650, 4600, 5200};
@@ -93,6 +93,7 @@ public class Anvil {
                 motor3 = hwMap.dcMotor.get("motor3");
                 motor4 = hwMap.dcMotor.get("motor4");
                 armMotor = hwMap.dcMotor.get("armMotor");
+                armServo = hwMap.servo.get("servoMotor");
                 sensorColor = hwMap.get(ColorSensor.class, "colorDistanceSensor");
                 sensorDistance = hwMap.get(DistanceSensor.class, "colorDistanceSensor");
                 motor1.setDirection(DcMotor.Direction.REVERSE);
@@ -623,5 +624,11 @@ public class Anvil {
             x.setPower(0);
             x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
+    }
+    public void armMotorUp(int speed) {
+        armMotor.setPower(speed);
+    }
+    public void armMoterDown(int speed) {
+        armMotor.setPower(-speed);
     }
 }
