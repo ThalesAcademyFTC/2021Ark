@@ -57,7 +57,7 @@ public class AydenAuton extends LinearOpMode {
         waitForStart();
 
         //Position C RIGHT
-        /*robot.moveForward(.3);
+        robot.moveForward(.3);
 
         while (robot.sensorColor.blue() <= 100){
             continue;
@@ -149,5 +149,4 @@ public class AydenAuton extends LinearOpMode {
     }
 }
          */
-    }
-}
+
