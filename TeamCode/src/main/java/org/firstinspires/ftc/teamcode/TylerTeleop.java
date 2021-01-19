@@ -20,7 +20,7 @@ public class TylerTeleop extends OpMode {
     boolean bool = true;
     @Override
     public void loop() {
-        telemetry.addData("Speed", 1/speed);
+        telemetry.addData("Speed",1/speed);
         telemetry.update();
         if (gamepad1.left_bumper) {
             robot.turnLeft(speed2);

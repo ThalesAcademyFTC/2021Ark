@@ -625,4 +625,10 @@ public class Anvil {
             x.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
     }
+    public void armMotorUp(int speed) {
+        armMotor.setPower(speed);
+    }
+    public void armMoterDown(int speed) {
+        armMotor.setPower(-speed);
+    }
 }
