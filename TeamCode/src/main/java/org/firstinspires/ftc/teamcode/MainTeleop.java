@@ -17,10 +17,12 @@ public class MainTeleop extends OpMode {
     double speed2 = 1;
     boolean bool = true;
     boolean swap = true;
-    boolean arm = false;
+    boolean arm = true;
     @Override
     public void loop() {
         telemetry.addData("Speed",1/speed);
+        telemetry.addData("arm",arm);
+        telemetry.addData("arm position",robot.armMotor.getCurrentPosition());
         telemetry.update();
         if (gamepad1.dpad_up){
             robot.liftClaw();
@@ -41,15 +43,16 @@ public class MainTeleop extends OpMode {
         }
         //code for using button to move claw to precise position while robot is moving.
         if (!arm){
-            if (robot.armMotor.getCurrentPosition() > 6000) arm = true;
+            if (robot.armMotor.getCurrentPosition() > 10500) arm = true;
         }
 
-        if (gamepad1.left_bumper && !arm){
+        if (gamepad1.left_bumper && arm){
             robot.armMotor.setPower(1);
-            arm = true;
+            arm = false;
         } else if (gamepad1.right_bumper){
             robot.armMotor.setPower(-1);
-        } else if (!arm) robot.armMotor.setPower(0);
+            arm = true;
+        } else if (arm) robot.armMotor.setPower(0);
 
 
         if (gamepad1.atRest()) robot.rest();

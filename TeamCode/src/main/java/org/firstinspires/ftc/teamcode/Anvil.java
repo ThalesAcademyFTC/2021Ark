@@ -93,6 +93,8 @@ public class Anvil {
                 motor3 = hwMap.dcMotor.get("motor3");
                 motor4 = hwMap.dcMotor.get("motor4");
                 armMotor = hwMap.dcMotor.get("armMotor");
+                armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                armMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 armServo = hwMap.servo.get("armServo");
                 sensorColor = hwMap.get(ColorSensor.class, "colorDistanceSensor");
                 sensorDistance = hwMap.get(DistanceSensor.class, "colorDistanceSensor");
