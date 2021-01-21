@@ -39,7 +39,7 @@ public class MainTeleop extends OpMode {
         } else if (!bool) {
             speed = 2;
         }
-        //code for using button to move claw to precise position.
+        //code for using button to move claw to precise position while robot is moving.
         if (!arm){
             if (robot.armMotor.getCurrentPosition() > 6000) arm = true;
         }
@@ -50,6 +50,8 @@ public class MainTeleop extends OpMode {
         } else if (gamepad1.right_bumper){
             robot.armMotor.setPower(-1);
         } else if (!arm) robot.armMotor.setPower(0);
+
+
         if (gamepad1.atRest()) robot.rest();
         else {
             if (Math.abs(gamepad1.left_stick_x) + Math.abs(gamepad1.left_stick_y) > 1.3) {
