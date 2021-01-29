@@ -15,8 +15,8 @@ public class MainTeleop extends OpMode {
     }
     double speed = 1;
     double speed2 = 1;
-    boolean bool = true;
-    boolean swap = true;
+    boolean bool, bbool, cbool = true;
+    boolean aswap, bswap, cswap = true;
     boolean arm = true;
     @Override
     public void loop() {
@@ -32,17 +32,17 @@ public class MainTeleop extends OpMode {
         }
         else if (gamepad1.dpad_left) robot.armServo.setPosition(1);
 
-         if(gamepad1.a && swap) {
+        if(gamepad1.a && aswap) {
             bool = !bool;
-            swap = false;
-        } else swap = true;
+            aswap = false;
+        } else aswap = true;
         if (bool) {
             speed = 1;
         } else if (!bool) {
             speed = 2;
         }
         //code for using button to move claw to precise position while robot is moving.
-        if (!arm){
+        if (!arm) {
             if (robot.armMotor.getCurrentPosition() > 10500) arm = true;
         }
 
@@ -53,6 +53,31 @@ public class MainTeleop extends OpMode {
             robot.armMotor.setPower(-1);
             arm = true;
         } else if (arm) robot.armMotor.setPower(0);
+
+        //Code for loading and firing the mechanism
+        if(gamepad1.left_trigger > 0.5 && bswap) {
+            bbool = !bbool;
+            bswap = false;
+        } else bswap = true;
+        if (bbool) {
+            robot.cmotor1.setPower(0);
+        } else if (!bbool) {
+            robot.fireRing();
+        }
+        if(gamepad1.right_trigger > 0.5 && cswap) {
+            cbool = !cbool;
+            cswap = false;
+        } else cswap = true;
+        if (cbool) {
+            robot.cmotor1.setPower(0);
+        } else if (!cbool) {
+            robot.collectRing();
+        }
+
+        //Code for raising and lowering the ramp along with set positions
+        if (gamepad1.x) robot.loadRamp();
+        else if(gamepad1.y) robot.halframp();
+        else if (gamepad1.b) robot.highramp();
 
 
         if (gamepad1.atRest()) robot.rest();

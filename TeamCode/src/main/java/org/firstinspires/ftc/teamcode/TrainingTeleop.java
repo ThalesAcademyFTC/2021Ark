@@ -26,14 +26,9 @@ public class TrainingTeleop extends OpMode {
         telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
         telemetry.update();
         if (gamepad1.atRest() && gamepad2.atRest()) robot.rest();
-        else if (gamepad1.x){
-            robot.armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            robot.armMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        } else if (gamepad1.b){
-            robot.armMotor.setPower(1);
-        } else if (gamepad1.a){
-            robot.armMotor.setPower(-1);
-        }
+        else if (gamepad1.x) robot.loadRamp();
+        else if(gamepad1.y) robot.halframp();
+        else if (gamepad1.b) robot.highramp();
         else {
             if (Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)) {
                 robot.turnRight(gamepad1.left_stick_x);
