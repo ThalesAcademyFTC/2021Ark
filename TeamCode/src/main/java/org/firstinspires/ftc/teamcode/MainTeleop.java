@@ -14,15 +14,17 @@ public class MainTeleop extends OpMode {
         robot = new Anvil(hardwareMap, Anvil.Drivetrain.UNNAMED, telemetry);
     }
     double speed = 1;
-    double speed2 = 1;
-    boolean bool, bbool, cbool = true;
+    boolean bool = true;
     boolean aswap, bswap, cswap = true;
+    int cf = 0;
     boolean arm = true;
     @Override
     public void loop() {
         telemetry.addData("Speed",1/speed);
         telemetry.addData("arm",arm);
         telemetry.addData("arm position",robot.armMotor.getCurrentPosition());
+        telemetry.addData("cf", cf);
+        telemetry.addData("leftT", gamepad1.left_trigger);
         telemetry.update();
         if (gamepad1.dpad_up){
             robot.liftClaw();
@@ -55,24 +57,18 @@ public class MainTeleop extends OpMode {
         } else if (arm) robot.armMotor.setPower(0);
 
         //Code for loading and firing the mechanism
-        if(gamepad1.left_trigger > 0.5 && bswap) {
-            bbool = !bbool;
+        if(gamepad1.left_trigger > 0.5 && bswap){
+            cf ^= 1;
             bswap = false;
-        } else bswap = true;
-        if (bbool) {
-            robot.cmotor1.setPower(0);
-        } else if (!bbool) {
-            robot.fireRing();
-        }
-        if(gamepad1.right_trigger > 0.5 && cswap) {
-            cbool = !cbool;
+        } else if (gamepad1.left_trigger <= 0.5) bswap = true;
+
+        if(gamepad1.right_trigger > 0.5 && cswap){
+            cf ^= -1;
             cswap = false;
-        } else cswap = true;
-        if (cbool) {
-            robot.cmotor1.setPower(0);
-        } else if (!cbool) {
-            robot.collectRing();
-        }
+        } else if (gamepad1.right_trigger <= 0.5)  cswap = true;
+        if (cf == -2) cf = 0;
+
+        robot.cmotor1.setPower(cf);
 
         //Code for raising and lowering the ramp along with set positions
         if (gamepad1.x) robot.loadRamp();

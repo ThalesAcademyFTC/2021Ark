@@ -646,12 +646,12 @@ public class Anvil {
     public void collectRing(){cmotor1.setPower(-1);}
 
     public void highramp(){
-        rservo1.setPosition(0.8);
-        rservo2.setPosition(0.2);
+        rservo1.setPosition(0.4);
+        rservo2.setPosition(0.6);
     }
     public void loadRamp(){
-        rservo1.setPosition(0.2);
-        rservo2.setPosition(0.8);
+        rservo1.setPosition(0.6);
+        rservo2.setPosition(0.4);
     }
     public void halframp(){
         rservo1.setPosition(0.5);
