@@ -45,10 +45,10 @@ import java.util.List;
 import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.UNNAMED;
 
 
-@Autonomous(name="AutonTemplate", group="Pushbot")
-@Disabled
+@Autonomous(name="AlexBlueCenterAuton", group="Pushbot")
+//@Disabled
 
-public class Team2Auton extends LinearOpMode {
+public class AlexBlueCenterAuton extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Quad";
     private static final String LABEL_SECOND_ELEMENT = "Single";
@@ -105,12 +105,15 @@ public class Team2Auton extends LinearOpMode {
             //Position C
 
 
+
         } else if (lastRecognized == "Single"){
             //Position B
 
 
+
         } else {
             //Position A
+
 
 
         }
