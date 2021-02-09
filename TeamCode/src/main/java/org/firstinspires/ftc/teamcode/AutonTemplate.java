@@ -30,6 +30,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -45,7 +46,7 @@ import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.UNNAMED;
 
 
 @Autonomous(name="AutonTemplate", group="Pushbot")
-//@Disabled
+@Disabled
 
 public class AutonTemplate extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
