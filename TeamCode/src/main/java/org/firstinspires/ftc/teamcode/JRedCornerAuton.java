@@ -48,7 +48,7 @@ import static org.firstinspires.ftc.teamcode.Anvil.Drivetrain.UNNAMED;
 @Autonomous(name="AutonTemplate", group="Pushbot")
 @Disabled
 
-public class AutonTemplate extends LinearOpMode {
+public class JRedCornerAuton extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Quad";
     private static final String LABEL_SECOND_ELEMENT = "Single";
@@ -103,11 +103,13 @@ public class AutonTemplate extends LinearOpMode {
         }
         if (lastRecognized == "Quad"){
             //Position C
-
+            robot.moveForwardFT(1000);
+            robot.moveForward(1);
+            while (robot.sensorColor.red() < 100) continue;
 
         } else if (lastRecognized == "Single"){
             //Position B
-
+            
 
         } else {
             //Position A
