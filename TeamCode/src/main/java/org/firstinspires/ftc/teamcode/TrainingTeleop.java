@@ -23,12 +23,26 @@ public class TrainingTeleop extends OpMode {
     @Override
 
     public void loop() {
-        telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
-        telemetry.update();
 
-        if (gamepad1.y) robot.cmotor1.setPower(1);
-        else if (gamepad1.x) robot.cmotor1.setPower(-1);
-        else robot.cmotor1.setPower(0);
+        if (gamepad1.y) {
+            robot.fmotor1.setPower(-1);
+            robot.fmotor2.setPower(-1);
+        }
+        else if (gamepad1.x) {
+            robot.fmotor1.setPower(1);
+            robot.fmotor2.setPower(1);
+        }
+        else {
+            robot.fmotor1.setPower(0);
+            robot.fmotor2.setPower(0);
+        }
+        if (gamepad1.dpad_up){
+            robot.tmotor.setPower(1);
+        } else if (gamepad1.dpad_down){
+            robot.tmotor.setPower(-1);
+        } else {
+            robot.tmotor.setPower(0);
+        }
 
       /*  if (gamepad1.atRest() && gamepad2.atRest()) robot.rest();
         else if (gamepad1.x) robot.loadRamp();

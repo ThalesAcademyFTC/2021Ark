@@ -68,12 +68,11 @@ public class MainTeleop extends OpMode {
         } else if (gamepad1.right_trigger <= 0.5)  cswap = true;
         if (cf == -2) cf = 0;
 
-        robot.cmotor1.setPower(cf);
 
         //Code for raising and lowering the ramp along with set positions
         if (gamepad1.x) robot.loadRamp();
-        else if(gamepad1.y) robot.halframp();
-        else if (gamepad1.b) robot.highramp();
+        else if(gamepad1.y) robot.highramp();
+        else if (gamepad1.b) robot.halframp();
 
 
         if (gamepad1.atRest()) robot.rest();

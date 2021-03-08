@@ -23,7 +23,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefau
 
 public class Anvil {
     //Define servo and motor variables
-    public DcMotor motor1, motor2, motor3, motor4, cmotor1, cmotor2;
+    public DcMotor motor1, motor2, motor3, motor4, tmotor, fmotor1, fmotor2;
     DigitalChannel touchyBlock, touchSensor;
     ColorSensor sensorColor;
     DistanceSensor sensorDistance;
@@ -92,8 +92,10 @@ public class Anvil {
                 motor2 = hwMap.dcMotor.get("motor2");
                 motor3 = hwMap.dcMotor.get("motor3");
                 motor4 = hwMap.dcMotor.get("motor4");
+                fmotor1 = hwMap.dcMotor.get("fmotor1");
+                fmotor2 = hwMap.dcMotor.get("fmotor2");
                 armMotor = hwMap.dcMotor.get("armMotor");
-                cmotor1 = hwMap.dcMotor.get("cmotor1");
+                tmotor = hwMap.dcMotor.get("tmotor");
                 armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 armMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 armServo = hwMap.servo.get("armServo");
@@ -189,8 +191,6 @@ public class Anvil {
                 motor2 = hwMap.dcMotor.get("motor2");
                 motor3 = hwMap.dcMotor.get("motor3");
                 motor4 = hwMap.dcMotor.get("motor4");
-                cmotor1 = hwMap.dcMotor.get("cmotor1");
-                cmotor2 = hwMap.dcMotor.get("cmotor2");
                 armMotor = hwMap.dcMotor.get("armMotor");
                 rservo1 = hwMap.servo.get("rservo1");
                 rservo2 = hwMap.servo.get("rservo2");
@@ -203,8 +203,6 @@ public class Anvil {
                 motor2.setDirection(DcMotor.Direction.REVERSE);
                 motor3.setDirection(DcMotor.Direction.FORWARD);
                 motor4.setDirection(DcMotor.Direction.REVERSE);
-                cmotor1.setDirection(DcMotor.Direction.FORWARD);
-                cmotor2.setDirection(DcMotor.Direction.FORWARD);
                 armMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
                 forward = new DcMotor[]{motor1, motor2, motor3, motor4};
@@ -212,7 +210,6 @@ public class Anvil {
                 right = new DcMotor[]{motor2, motor4};
                 special = new DcMotor[]{motor2, motor3};
                 unique = new DcMotor[]{motor1, motor4};
-                collect = new DcMotor[]{cmotor1, cmotor2};
                 hs = false;
                 break;
             case SAM:
@@ -642,20 +639,20 @@ public class Anvil {
     public void lowerClaw(){
         armServo.setPosition(0.75);
     }
-    public void fireRing() {cmotor1.setPower(1);}
-    public void collectRing(){cmotor1.setPower(-1);}
+   // public void fireRing() {cmotor1.setPower(1);}
+   // public void collectRing(){cmotor1.setPower(-1);}
 
     public void highramp(){
-        rservo1.setPosition(0.4);
+        rservo1.setPosition(0.6);
         rservo2.setPosition(0.6);
     }
     public void loadRamp(){
-        rservo1.setPosition(0.6);
+        rservo1.setPosition(0.4);
         rservo2.setPosition(0.4);
     }
     public void halframp(){
-        rservo1.setPosition(0.5);
-        rservo2.setPosition(0.5);
+        rservo1.setPosition(0);
+        rservo2.setPosition(1);
 
     }
 }
