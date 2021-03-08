@@ -42,6 +42,8 @@ public class AGTeleop extends OpMode {
                 robot.turnRight(.75);
             } else if (gamepad1.right_stick_x < -0.5){
                 robot.turnLeft(.75);
+            } else if (gamepad1.dpad_right) {
+                //robot.clawlift
             }
         }
 

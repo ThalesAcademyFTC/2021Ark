@@ -33,10 +33,8 @@ public class TylerTeleop extends OpMode {
         }
         if (bool) {
             speed = 1;
-            speed2 = 1;
         } else if (!bool) {
             speed = 2;
-            speed2 = 0.5;
         }
         if (gamepad1.dpad_up) {
             robot.armMotor.setPower(1);
